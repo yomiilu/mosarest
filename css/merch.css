@@ -1,0 +1,129 @@
+.bigtext{
+    color: black;
+    font-size: 7vw;
+    font-family: "Inter";
+    margin-top: 8vw;
+}
+
+.drop{
+    position: absolute;
+    margin-top: 4vw;
+    margin-left: 3vw;
+}
+
+.merch1{
+    margin-left: 3.47vw;
+    margin-top: 13vw;
+    width: 36.4vw;
+    height: 39.4vw;   
+    position: absolute; 
+}
+
+.merch1_text{
+    margin-left: 3.47vw;
+    margin-top: 52.42vw;
+    width: 36.4vw;
+    height: 2.5vw;   
+    position: absolute; 
+    background-color: rgb(49, 49, 49);
+}
+
+.merch2{
+    position: absolute;
+    margin-left: 60.2vw;
+    margin-top: 13vw;
+    width: 17.5vw;
+    height: 17.5vw;   
+}
+
+.merch2_text{
+    margin-left: 60.2vw;
+    margin-top: 30.5vw;
+    width: 17.5vw;
+    height: 2.5vw;   
+    position: absolute; 
+    background-color: rgb(49, 49, 49);
+}
+
+.merch3{
+    position: absolute;
+    margin-left: 79.1vw;
+    margin-top: 13vw;
+    width: 17.5vw;
+    height: 17.5vw;   
+}
+
+.merch3_text{
+    margin-top: 30.5vw;
+    margin-left: 79.1vw;
+    width: 17.5vw;
+    height: 2.5vw;   
+    position: absolute; 
+    background-color: rgb(49, 49, 49);
+}
+
+.merch4{
+    position: absolute;
+    margin-left: 41.3vw;
+    margin-top: 35vw;
+    width: 17.5vw;
+    height: 17.5vw;   
+}
+
+.merch4_text{
+    margin-top: 52.42vw;
+    margin-left: 41.3vw;
+    width: 17.5vw;
+    height: 2.5vw;   
+    position: absolute; 
+    background-color: rgb(49, 49, 49);
+}
+
+.merch5{
+    position: absolute;
+    margin-left: 60.2vw;
+    margin-top: 35vw;
+    width: 17.5vw;
+    height: 17.5vw;   
+}
+
+.merch5_text{
+    margin-top: 52.42vw;
+    margin-left: 60.2vw;
+    width: 17.5vw;
+    height: 2.5vw;   
+    position: absolute; 
+    background-color: rgb(49, 49, 49);
+}
+
+.section1_merch{
+    height: 100vw;
+}
+
+.grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 8.06vw);
+    gap: 1.39vw;
+    padding: 0 3.47vw;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+
+.col {
+    background: rgba(0, 0, 0, 0.1); 
+    height: 100vh; 
+    width: 100%;
+}
+
+
+body {
+    position: relative;
+    z-index: 1;
+}
+

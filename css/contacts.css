@@ -1,0 +1,25 @@
+.section1_contacts{
+    height: 100vw;
+}
+
+.medtext{
+    color: black;
+    font-size: 3vw;
+    font-family: "Inter";
+    line-height: 4vw;
+}
+
+.cont{
+    position: absolute;
+    margin-top: 8vw;
+    margin-left: 50.5vw;
+    margin-right: 15vw;
+}
+
+.cont_photo{
+    position: absolute;
+    margin-left: 3.5vw;
+    margin-top: 5vw;
+    width: 55.3vw;
+    height: 51.5vw;  
+}
