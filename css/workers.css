@@ -1,0 +1,10 @@
+.section1_workers{
+    height: 100vw;
+    position: relative;
+}
+
+.workers1{
+    position: absolute;
+    margin-top: 4vw;
+    margin-left: 3vw;
+}

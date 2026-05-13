@@ -1,0 +1,10 @@
+.section1_tarifs{
+    height: 100vw;
+    position: relative;
+}
+
+.tarifs1{
+    position: absolute;
+    margin-top: 4vw;
+    margin-left: 3vw;
+}

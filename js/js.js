@@ -1,75 +1,186 @@
-document.addEventListener("DOMContentLoaded", function(){
-    const whiteBlock = document.querySelector('.white');
-    const section1 = document.querySelector('.section1');
-    const animatedWord = document.querySelector('.animated-word');
+document.addEventListener("DOMContentLoaded", function () {
 
-    function handleScroll() {
-        const scrollY = window.scrollY;
-        const sectionHeight = section1.offsetHeight;
-        const maxScroll = sectionHeight - window.innerHeight;
-        
-        let whiteProgress = scrollY / maxScroll;
-        whiteProgress = Math.min(0.85, Math.max(0, whiteProgress));
-        if (whiteBlock) whiteBlock.style.opacity = whiteProgress;
-        
-        let textProgress = scrollY / maxScroll;
-        textProgress = Math.min(1, Math.max(0, textProgress));
-        
-        const easeOutCubic = (x) => 1 - Math.pow(1 - x, 3);
-        const smoothProgress = easeOutCubic(textProgress);
-        
-        let scale = 0.3 + (smoothProgress * 2.2);
-        if (animatedWord) animatedWord.style.transform = `translate(-50%, -50%) scale(${scale})`;
-        
-        if (whiteProgress > 0.01 && animatedWord && document.querySelector('.video-wrapper')) {
-            const rect = animatedWord.getBoundingClientRect();
-            const wrapperRect = document.querySelector('.video-wrapper').getBoundingClientRect();
-            
-            const x = (rect.left + rect.width/2 - wrapperRect.left) / wrapperRect.width * 100;
-            const y = (rect.top + rect.height/2 - wrapperRect.top) / wrapperRect.height * 100;
-            const fontSize = 120 * scale;
-            
-            whiteBlock.style.webkitMaskImage = `radial-gradient(circle at ${x}% ${y}%, transparent 0%, transparent ${fontSize/2}px, white ${fontSize/2}px, white 100%)`;
-            whiteBlock.style.maskImage = `radial-gradient(circle at ${x}% ${y}%, transparent 0%, transparent ${fontSize/2}px, white ${fontSize/2}px, white 100%)`;
-        } else if (whiteBlock) {
-            whiteBlock.style.webkitMaskImage = 'none';
-            whiteBlock.style.maskImage = 'none';
+    const progressBar = document.querySelector('.progress');
+    function updateProgress() {
+        if (!progressBar) return;
+        const st = window.pageYOffset;
+        const sh = document.documentElement.scrollHeight - window.innerHeight;
+        progressBar.style.width = (sh > 0 ? st / sh * 100 : 0) + '%';
+    }
+
+    const canvas = document.getElementById('mask-canvas');
+    const ctx    = canvas ? canvas.getContext('2d') : null;
+    const section = document.querySelector('.section1');
+
+    const DPR = window.devicePixelRatio || 1;
+    let logW = 0, logH = 0;
+
+    function resizeCanvas() {
+        if (!canvas) return;
+        logW = canvas.offsetWidth  || window.innerWidth;
+        logH = canvas.offsetHeight || window.innerHeight;
+        canvas.width  = Math.round(logW * DPR);
+        canvas.height = Math.round(logH * DPR);
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+
+    const TEXT        = 'MOSAREST';
+    const FONT_WEIGHT = '900';
+    const FONT_FAMILY = '"Inter", "Arial Black", sans-serif';
+    const TEXT_Y_FRAC = 0.66;
+    const MAX_ALPHA   = 0.82;
+    const LERP_SPEED  = 0.07;
+
+    let cachedMaxSize = 0;
+
+    function computeMaxFontSize() {
+        const probe = 600;
+        ctx.font = `${FONT_WEIGHT} ${probe}px ${FONT_FAMILY}`;
+        const w = ctx.measureText(TEXT).width;
+        return probe * logW / w;
+    }
+
+    function getMaxSize() {
+        if (!cachedMaxSize) cachedMaxSize = computeMaxFontSize();
+        return cachedMaxSize;
+    }
+
+    function getMinSize() { return getMaxSize() * 0.38; }
+
+    function getScrollProgress() {
+        if (!section) return 0;
+        const scrolled = window.pageYOffset - section.offsetTop;
+        const range    = section.offsetHeight - window.innerHeight;
+        return range > 0 ? Math.max(0, Math.min(1, scrolled / range)) : 0;
+    }
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function easeInOutCubic(t) {
+        return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+    }
+    function easeOutExpo(t) {
+        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    }
+
+    function drawFrame(fontSize, overlayAlpha) {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, logW, logH);
+        if (overlayAlpha < 0.002) return;
+
+        ctx.save();
+        ctx.globalAlpha = overlayAlpha;
+        ctx.fillStyle   = '#ffffff';
+        ctx.fillRect(0, 0, logW, logH);
+        ctx.restore();
+
+        if (fontSize < 2) return;
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.font         = `${FONT_WEIGHT} ${fontSize}px ${FONT_FAMILY}`;
+        ctx.textAlign    = 'center';
+        ctx.textBaseline = 'alphabetic';
+        ctx.fillText(TEXT, logW / 2, logH * TEXT_Y_FRAC);
+        ctx.restore();
+
+        const gAlpha = Math.min(overlayAlpha / MAX_ALPHA, 1);
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'destination-over';
+
+        const sweep = ctx.createLinearGradient(
+            logW * -0.1, logH * 0.05,
+            logW * 0.85, logH * 0.75
+        );
+        sweep.addColorStop(0.00, `rgba(255,255,255,0)`);
+        sweep.addColorStop(0.30, `rgba(255,255,255,0)`);
+        sweep.addColorStop(0.42, `rgba(240,245,255,${0.32 * gAlpha})`);
+        sweep.addColorStop(0.50, `rgba(255,255,255,${0.20 * gAlpha})`);
+        sweep.addColorStop(0.60, `rgba(255,255,255,0)`);
+        sweep.addColorStop(1.00, `rgba(255,255,255,0)`);
+        ctx.fillStyle = sweep;
+        ctx.fillRect(0, 0, logW, logH);
+
+        const spec = ctx.createLinearGradient(
+            logW * 0.08, logH * 0.00,
+            logW * 0.70, logH * 0.65
+        );
+        spec.addColorStop(0.00, `rgba(255,255,255,0)`);
+        spec.addColorStop(0.44, `rgba(255,255,255,0)`);
+        spec.addColorStop(0.48, `rgba(255,255,255,${0.55 * gAlpha})`);
+        spec.addColorStop(0.52, `rgba(230,240,255,${0.25 * gAlpha})`);
+        spec.addColorStop(0.56, `rgba(255,255,255,0)`);
+        spec.addColorStop(1.00, `rgba(255,255,255,0)`);
+        ctx.fillStyle = spec;
+        ctx.fillRect(0, 0, logW, logH);
+
+        const rim = ctx.createLinearGradient(
+            logW * 0.20, logH * 0.80,
+            logW * 0.80, logH * 0.45
+        );
+        rim.addColorStop(0.00, `rgba(255,255,255,0)`);
+        rim.addColorStop(0.55, `rgba(200,220,255,${0.18 * gAlpha})`);
+        rim.addColorStop(0.70, `rgba(255,255,255,${0.10 * gAlpha})`);
+        rim.addColorStop(1.00, `rgba(255,255,255,0)`);
+        ctx.fillStyle = rim;
+        ctx.fillRect(0, 0, logW, logH);
+
+        ctx.restore();
+    }
+
+    let curAlpha = 0, curSize = 0;
+    let tgtAlpha = 0, tgtSize = 0;
+    let isLooping = false;
+
+    function computeTargets() {
+        const p   = getScrollProgress();
+        const max = getMaxSize();
+        const min = getMinSize();
+
+        tgtAlpha = easeInOutCubic(Math.min(p / 0.35, 1)) * MAX_ALPHA;
+        tgtSize = min + (max - min) * easeOutExpo(p);
+    }
+
+    function loop() {
+        computeTargets();
+        curAlpha = lerp(curAlpha, tgtAlpha, LERP_SPEED);
+        curSize  = lerp(curSize,  tgtSize,  LERP_SPEED);
+        drawFrame(curSize, curAlpha);
+        updateProgress();
+
+        const settled = Math.abs(curAlpha - tgtAlpha) < 0.0008 &&
+                        Math.abs(curSize  - tgtSize)  < 0.15;
+        if (settled) {
+            drawFrame(tgtSize, tgtAlpha);
+            isLooping = false;
+        } else {
+            requestAnimationFrame(loop);
         }
     }
 
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                handleScroll();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-    
-    handleScroll();
-
-    // === ИСПРАВЛЕННЫЙ КОД ПРОГРЕСС-БАРА ===
-    const progress_bar = document.querySelector('.progress');
-
-    function upd_progress() {
-        if (!progress_bar) return; 
-        
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / scrollHeight) * 100;
-        
-        progress_bar.style.width = scrollPercent + '%';
+    function startLoop() {
+        if (!isLooping) { isLooping = true; requestAnimationFrame(loop); }
     }
-    
-    window.addEventListener('load', () => {
-        if (progress_bar) {
-            progress_bar.style.width = '0%';
-            upd_progress();
-        }
+
+    function init() {
+        resizeCanvas();
+        cachedMaxSize = 0;
+        curAlpha = 0;
+        curSize  = 0;
+        drawFrame(0, 0);
+    }
+
+    document.fonts.ready.then(() => { cachedMaxSize = 0; init(); });
+    window.addEventListener('scroll', startLoop, { passive: true });
+    window.addEventListener('resize', () => {
+        cachedMaxSize = 0;
+        resizeCanvas();
+        computeTargets();
+        curAlpha = tgtAlpha;
+        curSize  = tgtSize;
+        drawFrame(curSize, curAlpha);
     });
-    
-    window.addEventListener('scroll', upd_progress);
-    upd_progress();
+
+    init();
+    updateProgress();
 });

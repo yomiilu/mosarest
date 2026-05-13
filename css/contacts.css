@@ -2,12 +2,7 @@
     height: 100vw;
 }
 
-.medtext{
-    color: black;
-    font-size: 3vw;
-    font-family: "Inter";
-    line-height: 4vw;
-}
+
 
 .cont{
     position: absolute;
@@ -22,4 +17,35 @@
     margin-top: 5vw;
     width: 55.3vw;
     height: 51.5vw;  
+}
+
+
+.form-container{
+    margin-top: 25%;
+    margin-left: 69.7%;
+    position: absolute;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-input,
+.form-textarea {
+    width: 26.8vw;
+    padding: 15px;
+    border: 1px solid #000000;
+    font-size: 16px;
+    resize: none;
+    font-family: "Inter"
+}
+
+.submit{
+    height: 3vw;
+    width: 26.8vw;
+    background-color: #ababab;
+    border: none;
+
 }

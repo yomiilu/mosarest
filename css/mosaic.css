@@ -1,0 +1,17 @@
+.section1_mosaic{
+    height: 100vw;
+    position: relative;
+}
+
+.mosaichnaya{
+    position: absolute;
+    margin-top: 4vw;
+    margin-left: 3vw;
+}
+
+.mosaich1{
+    width: 45vw;
+    margin-left: 3.4vw;
+    position: absolute;
+    margin-top: 12vw;
+}
