@@ -1,7 +1,31 @@
 @font-face {
-    font-family: "Inter";
-    src: url("../fonts/Inter_18pt-Regular.ttf") format("truetype");
+    font-family: "Onest";
+    src: url("../fonts/Onest-Regular.ttf") format("truetype");
     font-style: normal; 
-    font-weight: 30;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Onest-SB";
+    src: url("../fonts/Onest-SemiBold.ttf") format("truetype");
+    font-style: normal; 
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Unb-SB";
+    src: url("../fonts/Unbounded-VariableFont_wght.ttf") format("truetype");
+    font-style: normal; 
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Unb-RG";
+    src: url("../fonts/Unbounded-Regular.ttf") format("truetype");
+    font-style: normal; 
+    font-weight: 100;
     font-display: swap;
 }

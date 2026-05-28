@@ -12,7 +12,7 @@ body {
 
 .section1 {
     height: 300vh;
-    background-color: #000;
+    background-color: #ffffff;
 }
 
 .video-wrapper {
@@ -26,8 +26,10 @@ body {
 video {
     position: absolute;
     top: 0; left: 0;
-    width: 100%;
+    width: 93.05%;
     height: 100%;
+    margin-top: 7.6vw;
+    margin-left: 3.5%;
     object-fit: cover;
     display: block;
     z-index: 1;
@@ -37,7 +39,7 @@ video {
     position: absolute;
     inset: 0;
     z-index: 0;
-    background: linear-gradient(160deg, #1a1a1a 0%, #0a0a0a 100%);
+    background: white;
 }
 
 #mask-canvas {
@@ -53,7 +55,7 @@ video {
 
 
 .progress {
-    background-color: rgb(35, 168, 30);
+    background-color: #94CD4D;
     width: 0%;
     height: 0.4vw;
     position: fixed;
@@ -62,25 +64,63 @@ video {
     z-index: 10000;
 }
 
+.progress1 {
+    background-color: #cfe9af;
+    width: 100%;
+    height: 0.4vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 900;
+}
+
 
 .header {
     margin-top: 0.4%;
-    background-color: white;
+    background-color: white ;
     width: 100%;
-    height: 2.5vw;
+    height: 4vw;
     position: fixed;
     top: 0;
     z-index: 9999;
+    border: 0.065vw solid black;
+    
+}
+
+.naming{
+    position: absolute;
+    font-family: "Unb-SB";
+    font-size: 1.67vw;
+}
+
+.n1{
+    margin-left: 7vw;
+    margin-top: 1.1vw;
+}
+
+.n2{
+    margin-left: 5vw;
+    margin-top: 3vw;
+}
+
+.card1{
+    position: absolute;
+    background-color: white;
+    margin-top: 15vw;
+    z-index: 123809;
+    margin-left: 3.5vw;
+    width: 36.39vw;
+    height: 20vw;
 }
 
 .logo {
     background-color: #757575;
     position: absolute;
-    margin-top: 0.3vw;
+    margin-top: 0.75vw;
     z-index: 1000000;
-    width: 2vw;
-    height: 2vw;
-    margin-left: 3%;
+    width: 2.5vw;
+    height: 2.5vw;
+    margin-left: 3.5%;
 }
 
 .li-list {
@@ -88,14 +128,14 @@ video {
     align-items: center;
     justify-content: center;
     display: flex;
-    gap: 5vw;
-    margin-top: 0.7vw;
+    gap: 4.5vw;
+    margin-top: 1.4vw;
 }
 
 .header_text {
     color: #757575;
-    font-family: Inter;
-    font-size: 1vw;
+    font-family: "Onest";
+    font-size: 1.04vw;
     text-decoration: none;
 }
 
@@ -112,11 +152,11 @@ video {
 .square1:hover,.square2:hover,.square3:hover,.square4:hover,.square5:hover {
     background-color: #000;
 }
-.square1 { margin-left: -43%; }
-.square2 { margin-left: -26%; }
-.square3 { margin-left: -11%; }
-.square4 { margin-left:  10%; }
-.square5 { margin-left: 30.5%; }
+.square1 { margin-left: -42%; }
+.square2 { margin-left: -25.5%; }
+.square3 { margin-left: -11.4%; }
+.square4 { margin-left:  9.3%; }
+.square5 { margin-left: 29%; }
 
 #square1,#square2,#square3,#square4,#square5 {
     background-color: black;
@@ -126,34 +166,322 @@ video {
     width: 0.83vw;
     height: 0.83vw;
 }
-#square1 { margin-left: -43%; }
-#square2 { margin-left: -26%; }
-#square3 { margin-left: -11%; }
-#square4 { margin-left:  10%; }
-#square5 { margin-left: 30.5%; }
+#square1 { margin-left: -42%; }
+#square2 { margin-left: -25.5%; }
+#square3 { margin-left: -11.4%; }
+#square4 { margin-left:  9.3%; }
+#square5 { margin-left: 29%; }
 
 #tarifs, #merch, #workers, #mosaic, #contacts { color: black; }
 
 
 .section2 {
-    height: 200vh;
+    height: 93vh;
     background-color: #fff;
     position: relative;
+    position: sticky;
+    will-change: transform;
+}
+
+.section3 {
+    height: 95vh;
+    position: sticky;
+    top: 0;
+    will-change: transform;
+}
+
+.green{
+    background-color: #e0efcf;
 }
 
 .main {
     position: absolute;
-    margin-top: 13.5vw;
-    line-height: 5vw;
-    margin-left: 22.2vw;
-    width: 60vw;
+    margin-top: 6.5vw;
+    margin-left: 31.7vw;
+    width: 50vw;
 }
 
 .medtext {
     color: black;
-    font-size: 2.4vw;
-    font-family: "Inter";
-    line-height: 3.7vw;
+    font-size: 2.78vw;
+    font-family: "Unb-SB";
+    line-height: 3.9vw;
+    letter-spacing: 3%;
 }
 
+.btntext {
+    color: rgb(255, 255, 255);
+    font-size: 1.74vw;
+    font-family: "Unb-RG";
+    line-height: 3.9vw;
+    letter-spacing: 3%;
+}
+
+.bt1{
+    margin-left: 1.7vw;
+    margin-top: 0.5vw;
+
+
+}
+
+.zagolovok {
+    color: black;
+    font-size: 4vw;
+    font-family: "Unb-SB";
+    line-height: 4.8vw;
+    letter-spacing: 3%;
+}
+
+.zg1{
+    margin-top: 4.5vw;
+    position: absolute;
+    margin-left: 3.5vw;
+    width: 60vw;
+}
+
+.basic {
+    color: black;
+    font-size: 1.04vw;
+    font-family: "Onest";
+    line-height: 2vw;
+}
+
+.small_text {
+    color: black;
+    font-size: 0.9vw;
+    font-family: "Onest-SB";
+    line-height: 2vw;
+}
+
+.st1{
+    position: absolute;
+    margin-top: 2.3vw;
+    z-index: 1000;
+    margin-left: 3.5vw;
+    width: 38vw;
+}
+
+.ph1{
+    width: 17.5vw;
+    height: 27.7vw;
+    margin-left: 3.5%;
+    position: absolute;
+    margin-top: 4vw;
+}
+
+.ph2{
+    width: 17.5vw;
+    height: 14vw;
+    margin-left: 3.5%;
+    position: absolute;
+    margin-top: 33.5vw;
+}
+
+.ph3{
+    width: 8.05vw;
+    height: 8.05vw;
+    margin-left: 31.8vw;
+    position: absolute;
+    margin-top: 39.4vw;
+}
+
+.ph4{
+    width: 8.05vw;
+    height: 8.05vw;
+    margin-left: 41.25vw;
+    position: absolute;
+    margin-top: 39.4vw;
+}
+
+.ph5{
+    width: 8.05vw;
+    height: 8.05vw;
+    margin-left: 50.7vw;
+    position: absolute;
+    margin-top: 39.4vw;
+}
+
+.ph6{
+    width: 8.05vw;
+    height: 8.05vw;
+    margin-left: 60.15vw;
+    position: absolute;
+    margin-top: 39.4vw;
+}
+
+.ph7{
+    width: 17.5vw;
+    height: 27.7vw;
+    margin-left: 79.1%;
+    position: absolute;
+    margin-top: 19.8vw;
+}
+
+.ph8{
+    width: 17.5vw;
+    height: 14vw;
+    margin-left: 79.1%;
+    position: absolute;
+    margin-top: 4vw;
+}
+
+.b1 {
+    position: absolute;
+    margin-top: 21vw;
+    margin-left: 31.7vw;
+    width: 38vw;
+}
+
+
+
 .white, .title1, .animated-word { display: none; }
+
+
+.opener_wrap {
+    position: absolute;
+    margin-top: 16vw;
+    margin-left: 3.5vw;
+    width: 36vw;
+}
+
+.opener1 {
+    display: flex;
+    flex-direction: column;
+    border-top: 0.065vw solid #000;
+}
+
+.opener_item {
+    border-bottom: 0.065vw solid #000;
+    background-color: #ffffff;
+    transition: background-color 0.2s;
+}
+
+.opener_item.open {
+    background-color: #94CD4D;
+}
+
+.opener_btn {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.2vw;
+    padding-top: 1.2vw;
+    padding-bottom: 1.2vw;
+    padding-left: 1.2vw;
+    padding-right: 1.2vw;
+    text-align: left;
+    font-family: "Onest";
+    background: none;
+    border: 0;
+    cursor: pointer;
+    color: #000;
+}
+
+.opener_num {
+    font-family: "Unb-SB";
+    font-size: 0.85vw;
+    color: #757575;
+    letter-spacing: 0.08em;
+    width: 2.5vw;
+}
+
+.opener_title {
+    font-family: "Unb-SB";
+    font-size: 1.6vw;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.opener_plus {
+    width: 2.3vw;
+    height: 2.3vw;
+    border: 0.065vw solid #000;
+    border-radius: 0.4vw;
+    display: grid;
+    place-items: center;
+    background-color: #ffffff;
+    position: relative;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+
+.opener_plus::before,
+.opener_plus::after {
+    content: "";
+    position: absolute;
+    background: currentColor;
+    transition: transform 0.25s;
+}
+
+.opener_plus::before {
+    width: 0.75vw;
+    height: 0.1vw;
+}
+
+.opener_plus::after {
+    width: 0.1vw;
+    height: 0.75vw;
+}
+
+.opener_item.open .opener_plus {
+    background-color: #000;
+    color: #94CD4D;
+}
+
+.opener_item.open .opener_plus::after {
+    transform: rotate(90deg);
+}
+
+.opener_body {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+}
+
+.opener_inner {
+    padding-top: 0;
+    padding-bottom: 1.8vw;
+    padding-left: 5vw;
+    padding-right: 0.6vw;
+    font-family: "Onest";
+    font-size: 1.04vw;
+    line-height: 1.6;
+    color: #1a1a1a;
+    max-width: 50ch;
+}
+
+.opener_tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5vw;
+    margin-top: 1.7vw;
+}
+
+.opener_tags span {
+    padding-top: 0.35vw;
+    padding-bottom: 0.35vw;
+    padding-left: 0.75vw;
+    padding-right: 0.75vw;
+    border: 0.065vw solid #000;
+    border-radius: 999px;
+    font-size: 0.75vw;
+    font-family: "Onest";
+    background-color: #ffffff;
+}
+
+.go_to_btn{
+    margin-top: 1.7vw;
+    width: 36vw;
+    height: 5vw;
+    position: relative;
+    background-color: rgb(0, 0, 0);
+
+}
+
+.arrow1{
+    margin-left: 19vw;
+    position: absolute;
+    margin-top: -2.5vw;
+}
+

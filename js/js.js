@@ -26,9 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const TEXT        = 'MOSAREST';
     const FONT_WEIGHT = '900';
-    const FONT_FAMILY = '"Inter", "Arial Black", sans-serif';
-    const TEXT_Y_FRAC = 0.66;
-    const MAX_ALPHA   = 0.82;
+    const FONT_FAMILY = '"Unb-SB", "Arial Black", sans-serif';
+    const TEXT_Y_FRAC = 0.8;
+    const MAX_ALPHA   = 0.65;
     const LERP_SPEED  = 0.07;
 
     let cachedMaxSize = 0;
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const probe = 600;
         ctx.font = `${FONT_WEIGHT} ${probe}px ${FONT_FAMILY}`;
         const w = ctx.measureText(TEXT).width;
-        return probe * logW / w;
+        return (probe * logW / w) * 0.9;
     }
 
     function getMaxSize() {
@@ -183,4 +183,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
     init();
     updateProgress();
+
+    document.querySelectorAll('#opener1 .opener_btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var item = btn.parentElement;
+            var wasOpen = item.classList.contains('open');
+
+            document.querySelectorAll('#opener1 .opener_item').forEach(function(it) {
+                it.classList.remove('open');
+                it.querySelector('.opener_body').style.maxHeight = '0px';
+            });
+
+            if (!wasOpen) {
+                item.classList.add('open');
+                var body = item.querySelector('.opener_body');
+                var inner = item.querySelector('.opener_inner');
+                body.style.maxHeight = inner.scrollHeight + 'px';
+            }
+        });
+    });
+
+    var first = document.querySelector('#opener1 .opener_item.open');
+    if (first) {
+        var b = first.querySelector('.opener_body');
+        b.style.maxHeight = first.querySelector('.opener_inner').scrollHeight + 'px';
+    }
+    
+gsap.registerPlugin(ScrollTrigger);
+gsap.utils.toArray(".section3").forEach((section3, i) => { if (i === 0) return;
+
+      gsap.from(panel, {
+        yPercent: 100,
+        scale: 1.1,
+        scrollTrigger: {
+        trigger: panel,
+        start: "top bottom",
+        end: "top top",
+        scrub: true
+        }
+      });
+    });
+
+
+
+
 });
