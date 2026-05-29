@@ -209,6 +209,74 @@ document.addEventListener("DOMContentLoaded", function () {
         b.style.maxHeight = first.querySelector('.opener_inner').scrollHeight + 'px';
     }
     
+
+    (function () {
+    const COLORS = ['#94CD4D', '#FFF59F', '#FE969D'];
+    const canvas = document.getElementById('squaresCanvas');
+    const btn    = document.getElementById('goToBtn');
+
+    function pickColor(grid, col, row) {
+        const forbidden = new Set();
+        if (col > 0 && grid[col - 1]?.[row]) forbidden.add(grid[col - 1][row]);
+        if (row > 0 && grid[col]?.[row - 1])  forbidden.add(grid[col][row - 1]);
+        const available = COLORS.filter(c => !forbidden.has(c));
+        return available[Math.floor(Math.random() * available.length)];
+    }
+
+    function buildSquares() {
+        canvas.innerHTML = '';
+
+        const cols   = 4;
+        const sqSize = btn.offsetHeight / 2;
+
+        canvas.style.gridAutoColumns = sqSize + 'px';
+        canvas.style.width = (sqSize * cols) + 'px';
+
+        const GREEN_FILL_DURATION = 0.2;
+        const grid = {};
+
+        // First column is always fixed: top = yellow, bottom = pink
+        grid[0] = { 0: '#FFF59F', 1: '#FE969D' };
+
+        for (let col = 0; col < cols; col++) {
+            if (col > 0) grid[col] = {};
+
+            for (let row = 0; row < 2; row++) {
+                const color = col === 0
+                    ? grid[0][row]
+                    : pickColor(grid, col, row);
+
+                if (col > 0) grid[col][row] = color;
+
+                const sq = document.createElement('div');
+                sq.className = 'sq';
+                sq.style.background = color;
+                sq.style.width      = sqSize + 'px';
+                sq.style.height     = sqSize + 'px';
+
+                sq.dataset.enterDelay = (GREEN_FILL_DURATION + col * 0.05 + row * 0.02) + 's';
+                sq.dataset.leaveDelay = ((cols - col - 1) * 0.03) + 's';
+
+                canvas.appendChild(sq);
+            }
+        }
+    }
+
+    buildSquares();
+    window.addEventListener('resize', buildSquares);
+
+    btn.addEventListener('mouseenter', () => {
+        canvas.querySelectorAll('.sq').forEach(sq => {
+            sq.style.transitionDelay = sq.dataset.enterDelay;
+        });
+    });
+
+    btn.addEventListener('mouseleave', () => {
+        canvas.querySelectorAll('.sq').forEach(sq => {
+            sq.style.transitionDelay = sq.dataset.leaveDelay;
+        });
+    });
+})();
 gsap.registerPlugin(ScrollTrigger);
 gsap.utils.toArray(".section3").forEach((section3, i) => { if (i === 0) return;
 
