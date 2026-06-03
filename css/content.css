@@ -184,14 +184,30 @@ video {
 }
 
 .section3 {
-    height: 95vh;
+    height: 97vh;
     position: sticky;
     top: 0;
+    border: none;
     will-change: transform;
+    z-index: 2; 
 }
+
+
+.section4 {
+    height: 124svh;
+    position: relative;
+}
+
+.section5 {
+    height: 97vh;
+    position: relative;
+    background-color: #FFF59F;
+}
+
 
 .green{
     background-color: #ebf4e1;
+    z-index: 2;
 }
 
 .main {
@@ -232,8 +248,51 @@ video {
     letter-spacing: 3%;
 }
 
+.merch_name {
+    color: black;
+    font-size: 1.1vw;
+    font-family: "Unb-SB";
+    line-height: 4.8vw;
+    letter-spacing: 3%;
+    margin-left: 1.5vw;
+    margin-top: -0.6vw;
+    justify-content: center;
+}
+
+.price_case1{
+    margin-left: 31vw;
+}
+.price_case2{
+    margin-left: 12vw;
+}
+
+.price1 {
+    color: black;
+    font-size: 1.3vw;
+    font-family: "Onest";
+    line-height: 4.8vw;
+    position: absolute;
+    letter-spacing: 3%;
+    margin-top: -4.8vw;
+    justify-content: center;
+}
+
 .zg1{
     margin-top: 4.5vw;
+    position: absolute;
+    margin-left: 3.5vw;
+    width: 60vw;
+}
+
+.zg2{
+    margin-top: 7vw;
+    position: absolute;
+    margin-left: 3.5vw;
+    width: 60vw;
+}
+
+.zg3{
+    margin-top: 5vw;
     position: absolute;
     margin-left: 3.5vw;
     width: 60vw;
@@ -254,6 +313,22 @@ video {
 }
 
 .st1{
+    position: absolute;
+    margin-top: 2.3vw;
+    z-index: 1000;
+    margin-left: 3.5vw;
+    width: 38vw;
+}
+
+.st2{
+    position: absolute;
+    margin-top: 4.5vw;
+    z-index: 1000;
+    margin-left: 3.5vw;
+    width: 38vw;
+}
+
+.st3{
     position: absolute;
     margin-top: 2.3vw;
     z-index: 1000;
@@ -325,6 +400,77 @@ video {
     margin-top: 4vw;
 }
 
+
+.tovar1{
+    width: 40vw;
+    height: 54vw;
+    margin-left: 13%;
+    position: absolute;
+    margin-top: 19vw;
+}
+
+.ph9{
+    width: 36.3vw;
+    height: 45vw;
+    position: relative;
+}
+
+.podp1{
+    width: 36.3vw;
+    height: 3.5vw;
+    position: absolute;
+    margin-top: -0.19vw;
+    border: 0.1vw solid rgb(33, 29, 29);
+}
+
+.ph10{
+    width: 17.5vw;
+    height: 21.6vw;
+    position: relative;
+}
+
+.tovar2{
+    width: 17.5vw;
+    height: 21.6vw;
+    margin-left: 50.7vw;
+    position: absolute;
+    margin-top: 19vw;
+}
+
+.podp2{
+    width: 17.5vw;
+    height: 3.5vw;
+    position: absolute;
+    margin-top: -0.19vw;
+    border: 0.1vw solid rgb(33, 29, 29);
+}
+
+.tovar3{
+    width: 17.5vw;
+    height: 21.6vw;
+    margin-left: 69.6vw;
+    position: absolute;
+    margin-top: 19vw;
+}
+
+.podp3{
+    width: 17.5vw;
+    height: 3.5vw;
+    position: absolute;
+    margin-top: -0.19vw;
+    border: 0.1vw solid rgb(33, 29, 29);
+}
+
+
+
+.ph11{
+    width: 17.5vw;
+    height: 21.6vw;
+    position: relative;
+}
+
+
+
 .b1 {
     position: absolute;
     margin-top: 21vw;
@@ -338,14 +484,14 @@ video {
 
 
 .opener_wrap {
-    position: absolute;
-    margin-top: 16vw;
+    position: relative;
     margin-left: 3.5vw;
     width: 36vw;
 }
 
 .opener1 {
     display: flex;
+    padding-top: 16vw;
     flex-direction: column;
     border-top: 0.065vw solid #000;
 }
@@ -485,7 +631,7 @@ video {
     margin-top: -2.5vw;
 }
 
-/* ADD THIS TO YOUR CSS */
+/* ———————————————————————————————————1 */ 
 
 .go_to_btn {
     margin-top: 1.7vw;
@@ -504,7 +650,7 @@ video {
     position: absolute;
     left: 0;
     top: 0;
-    width: calc(100% - 10vw); /* 10vw = 4 squares × 2.5vw each */
+    width: calc(100% - 10vw);
     height: 100%;
     background: #94CD4D;
     transform: scaleX(0);
@@ -516,12 +662,9 @@ video {
 .go_to_btn:hover::before {
     transform: scaleX(1);
 }
-/* ADD THIS — this was missing, squares never got triggered */
 .go_to_btn:hover .sq {
     transform: scale(1);
 }
-
-/* Text flips black as green passes */
 .btntext.bt1 {
     position: relative;
     z-index: 3;
@@ -545,7 +688,7 @@ video {
     margin-top: -0.4vw;
     z-index: 3;
     transition: opacity 0.04s ;
-    /* NO filter here — your SVG is already white */
+
 }
 
 .go_to_btn:hover .arrow1 {
@@ -556,13 +699,13 @@ video {
     position: absolute;
     right: 0;
     top: 0;
-    width: calc(2.5vw * 4); /* 4 squares wide, each = half button height (5vw/2) */
+    width: calc(2.5vw * 4); 
     height: 100%;
     z-index: 2;
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-auto-flow: column;
-    grid-auto-columns: 2.5vw; /* matches square height */
+    grid-auto-columns: 2.5vw; 
     pointer-events: none;
 }
 
@@ -570,4 +713,303 @@ video {
     transform: scale(0);
     transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+
+/* ———————————————————————————————————2 */ 
+
+
+.go_to_btn2 {
+    margin-top: 46vw;
+    margin-left: 50.7vw;
+    width: 36vw;
+    height: 5vw;
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.go_to_btn2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc(100% - 10vw);
+    height: 100%;
+    background: #94CD4D;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.2s cubic-bezier(0.76, 0, 0.24, 1);
+    z-index: 1;
+}
+
+.go_to_btn2:hover::before {
+    transform: scaleX(1);
+}
+.go_to_btn2:hover .sq {
+    transform: scale(1);
+}
+.btntext.bt1 {
+    position: relative;
+    z-index: 3;
+    margin: 0 0 0 1.5vw;
+    background: linear-gradient(to right, #000 50%, #fff 50%);
+    background-size: 200% 100%;
+    background-position: right center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: background-position 0.16s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.go_to_btn2:hover .btntext.bt1 {
+    background-position: left center;
+}
+
+.arrow1 {
+    margin-left: 19vw;
+    position: absolute;
+    margin-top: -0.4vw;
+    z-index: 3;
+    transition: opacity 0.04s ;
+
+}
+
+.go_to_btn2:hover .arrow1 {
+    opacity: 0;
+}
+
+.otzyv1{
+    background-color: white;
+    width: 17.5vw;
+    height: 18.89vw;
+    position: absolute;
+    border: 0.1vw solid black;
+    margin-left: 3.5vw;
+    margin-top: 17.5vw;
+    opacity: 1;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    
+}
+
+
+.otzyv1_2{
+    background-color: white;
+    opacity: 0;
+    width: 17.5vw;
+    height: 29.1vw;
+    position: absolute;
+    border: 0.1vw solid black;
+    margin-left: 3.5vw;
+    margin-top: 17.5vw;
+    pointer-events: none;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    
+}
+
+
+.otzyv2{
+    background-color: white;
+    width: 17.5vw;
+    height: 18.89vw;
+    position: absolute;
+    border: 0.1vw solid black;
+    margin-left: 22.4vw;
+    margin-top: 17.5vw;
+    opacity: 1;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    
+}
+
+
+
+.otzyv2_2{
+    background-color: white;
+    opacity: 0;
+    width: 17.5vw;
+    height: 29.1vw;
+    position: absolute;
+    border: 0.1vw solid black;
+    margin-left: 22.4vw;
+    margin-top: 17.5vw;
+    pointer-events: none;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    
+}
+
+.otzyv3{
+    background-color: white;
+    width: 17.5vw;
+    height: 18.89vw;
+    position: absolute;
+    border: 0.1vw solid black;
+    margin-left: 41.3vw;
+    margin-top: 17.5vw;
+    opacity: 1;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    
+}
+
+
+.otzyv3_2{
+    background-color: white;
+    opacity: 0;
+    width: 17.5vw;
+    height: 29.1vw;
+    position: absolute;
+    border: 0.1vw solid black;
+    margin-left: 41.3vw;
+    margin-top: 17.5vw;
+    pointer-events: none;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    
+}
+
+.otzyv4{
+    background-color: white;
+    width: 17.5vw;
+    height: 18.89vw;
+    position: absolute;
+    border: 0.1vw solid black;
+    margin-left: 60.2vw;
+    margin-top: 17.5vw;
+    opacity: 1;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    
+}
+
+
+.otzyv4_2{
+    background-color: white;
+    opacity: 0;
+    width: 17.5vw;
+    height: 29.1vw;
+    position: absolute;
+    border: 0.1vw solid black;
+    margin-left: 60.2vw;
+    margin-top: 17.5vw;
+    pointer-events: none;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    
+}
+
+.otzyv5{
+    background-color: white;
+    width: 17.5vw;
+    height: 18.89vw;
+    position: absolute;
+    border: 0.1vw solid black;
+    margin-left: 79.1vw;
+    margin-top: 17.5vw;
+    opacity: 1;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    
+}
+
+
+.otzyv5_2{
+    background-color: white;
+    opacity: 0;
+    width: 17.5vw;
+    height: 29.1vw;
+    position: absolute;
+    border: 0.1vw solid black;
+    margin-left: 79.1vw;
+    margin-top: 16.5vw;
+    pointer-events: none;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    
+}
+
+.letter1{
+    border-radius: 0.5vw;
+    border: 0.1vw solid black;
+    background-color: #FE969D;
+    width: 3.33vw;
+    position: absolute;
+    margin-top: 1vw;
+    height: 3.33vw;
+    margin-left: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1vw;
+    font-family: "Unb-SB";
+    line-height: 4.8vw;
+
+}
+
+#back1{
+    background-color: #FE969D;
+
+}
+
+#back2{
+    background-color: #94CD4D;
+
+}
+
+#back3{
+    background-color: #FFF59F;
+}
+
+.imya1{
+    margin-left: 5.5vw;
+    position: absolute;
+    margin-top: 1.5vw;
+    font-family: "Onest-SB";
+}
+
+.not_full1{
+    margin-left: 1vw;
+    position: absolute;
+    margin-top: 7vw; 
+    width: 14.8vw;
+
+}
+
+.full1{
+    margin-left: 1vw;
+    position: absolute;
+    margin-top: 7vw; 
+    width: 14.8vw;
+
+}
+
+.stars{
+    position: absolute;
+    margin-left: 1vw;
+    margin-top: 5.3vw;
+}
+
+.read1{
+    margin-left: 1vw;
+    position: absolute;
+    margin-top: 16.2vw;
+    font-family: "Onest-SB";
+    text-decoration: underline;
+
+}
+
+.read1_2{
+    margin-left: 1vw;
+    position: absolute;
+    margin-top: 26.4vw;
+    font-family: "Onest-SB";
+    text-decoration: underline;
+
+}
+
+
 

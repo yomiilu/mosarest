@@ -111,13 +111,13 @@
     gap: 1.39vw;
     padding: 0 3.47vw;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 99999999;
 }
 
 
 .col {
     background: rgba(0, 0, 0, 0.1); 
-    height: 100vh; 
+    height: 300vh; 
     width: 100%;
 }
 

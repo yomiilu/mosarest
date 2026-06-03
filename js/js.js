@@ -210,12 +210,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
 
-    (function () {
+ (function () {
     const COLORS = ['#94CD4D', '#FFF59F', '#FE969D'];
-    const canvas = document.getElementById('squaresCanvas');
-    const btn    = document.getElementById('goToBtn');
 
-    function pickColor(grid, col, row) {
+function pickColor(grid, col, row) {
         const forbidden = new Set();
         if (col > 0 && grid[col - 1]?.[row]) forbidden.add(grid[col - 1][row]);
         if (row > 0 && grid[col]?.[row - 1])  forbidden.add(grid[col][row - 1]);
@@ -223,75 +221,94 @@ document.addEventListener("DOMContentLoaded", function () {
         return available[Math.floor(Math.random() * available.length)];
     }
 
-    function buildSquares() {
-        canvas.innerHTML = '';
+    function initBtn(btn) {
+        const canvas = btn.querySelector('.squares-canvas');
 
-        const cols   = 4;
-        const sqSize = btn.offsetHeight / 2;
+        function buildSquares() {
+            canvas.innerHTML = '';
 
-        canvas.style.gridAutoColumns = sqSize + 'px';
-        canvas.style.width = (sqSize * cols) + 'px';
+            const cols   = 4;
+            const sqSize = btn.offsetHeight / 2;
 
-        const GREEN_FILL_DURATION = 0.2;
-        const grid = {};
+            canvas.style.gridAutoColumns = sqSize + 'px';
+            canvas.style.width = (sqSize * cols) + 'px';
 
-        // First column is always fixed: top = yellow, bottom = pink
-        grid[0] = { 0: '#FFF59F', 1: '#FE969D' };
+            const GREEN_FILL_DURATION = 0.2;
+            const grid = {};
 
-        for (let col = 0; col < cols; col++) {
-            if (col > 0) grid[col] = {};
+            grid[0] = { 0: '#FFF59F', 1: '#FE969D' };
 
-            for (let row = 0; row < 2; row++) {
-                const color = col === 0
-                    ? grid[0][row]
-                    : pickColor(grid, col, row);
+            for (let col = 0; col < cols; col++) {
+                if (col > 0) grid[col] = {};
+                for (let row = 0; row < 2; row++) {
+                    const color = col === 0 ? grid[0][row] : pickColor(grid, col, row);
+                    if (col > 0) grid[col][row] = color;
 
-                if (col > 0) grid[col][row] = color;
+                    const sq = document.createElement('div');
+                    sq.className = 'sq';
+                    sq.style.background = color;
+                    sq.style.width      = sqSize + 'px';
+                    sq.style.height     = sqSize + 'px';
 
-                const sq = document.createElement('div');
-                sq.className = 'sq';
-                sq.style.background = color;
-                sq.style.width      = sqSize + 'px';
-                sq.style.height     = sqSize + 'px';
+                    sq.dataset.enterDelay = (GREEN_FILL_DURATION + col * 0.05 + row * 0.02) + 's';
+                    sq.dataset.leaveDelay = ((cols - col - 1) * 0.03) + 's';
 
-                sq.dataset.enterDelay = (GREEN_FILL_DURATION + col * 0.05 + row * 0.02) + 's';
-                sq.dataset.leaveDelay = ((cols - col - 1) * 0.03) + 's';
-
-                canvas.appendChild(sq);
+                    canvas.appendChild(sq);
+                }
             }
+        }
+
+        buildSquares();
+        window.addEventListener('resize', buildSquares);
+
+        btn.addEventListener('mouseenter', () => {
+            canvas.querySelectorAll('.sq').forEach(sq => {
+                sq.style.transitionDelay = sq.dataset.enterDelay;
+            });
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            canvas.querySelectorAll('.sq').forEach(sq => {
+                sq.style.transitionDelay = sq.dataset.leaveDelay;
+            });
+        });
+
+        // navigation
+        const href = btn.dataset.href;
+        if (href) {
+            btn.addEventListener('click', () => {
+                window.location.href = href;
+            });
         }
     }
 
-    buildSquares();
-    window.addEventListener('resize', buildSquares);
-
-    btn.addEventListener('mouseenter', () => {
-        canvas.querySelectorAll('.sq').forEach(sq => {
-            sq.style.transitionDelay = sq.dataset.enterDelay;
-        });
-    });
-
-    btn.addEventListener('mouseleave', () => {
-        canvas.querySelectorAll('.sq').forEach(sq => {
-            sq.style.transitionDelay = sq.dataset.leaveDelay;
-        });
-    });
+    document.querySelectorAll('.btn-animated').forEach(initBtn);
 })();
-gsap.registerPlugin(ScrollTrigger);
-gsap.utils.toArray(".section3").forEach((section3, i) => { if (i === 0) return;
+for(let i = 1; i <= 5; i++) {
 
-      gsap.from(panel, {
-        yPercent: 100,
-        scale: 1.1,
-        scrollTrigger: {
-        trigger: panel,
-        start: "top bottom",
-        end: "top top",
-        scrub: true
-        }
-      });
+    const shortCard = document.querySelector(`.otzyv${i}`);
+    const fullCard = document.querySelector(`.otzyv${i}_2`);
+
+    const readBtn = shortCard.querySelector('.read_more_btn');
+    const closeBtn = fullCard.querySelector('.collapse_btn');
+
+    readBtn.addEventListener('click', () => {
+        shortCard.style.opacity = '0';
+        shortCard.style.pointerEvents = 'none';
+
+        fullCard.style.opacity = '1';
+        fullCard.style.pointerEvents = 'auto';
     });
 
+    closeBtn.addEventListener('click', () => {
+        fullCard.style.opacity = '0';
+        fullCard.style.pointerEvents = 'none';
+
+        shortCard.style.opacity = '1';
+        shortCard.style.pointerEvents = 'auto';
+    });
+
+}
 
 
 
