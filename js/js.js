@@ -312,4 +312,199 @@ for(let i = 1; i <= 5; i++) {
 
 
 
+(function () {
+    'use strict';
+
+    const TILE = 22;
+    const GAP  = 3;
+
+    const SHAPES = ['square', 'circle', 'diamond', 'triangle'];
+    const PAT = [
+        [0, 1, 2, 3],
+        [2, 3, 0, 1],
+        [3, 0, 1, 2],
+        [1, 2, 3, 0],
+    ];
+
+    function getShape(r, c, rows, cols) {
+        if (r === 0 || c === 0 || r === rows - 1 || c === cols - 1) return 'square';
+        return SHAPES[PAT[r % 4][c % 4]];
+    }
+
+    function renderMosaic(cv, img) {
+        const W = img.offsetWidth, H = img.offsetHeight;
+        if (!W || !H) return false;
+
+        const DPR = window.devicePixelRatio || 1;
+        cv.width  = Math.round(W * DPR);
+        cv.height = Math.round(H * DPR);
+        const ctx = cv.getContext('2d');
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, W, H);
+
+        /* округляем кол-во клеток → делим размер ровно, без остатка */
+        const cols  = Math.max(2, Math.round(W / TILE));
+        const rows  = Math.max(2, Math.round(H / TILE));
+        const tileW = W / cols;
+        const tileH = H / rows;
+
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                const shape = getShape(r, c, rows, cols);
+
+                const sx = c * tileW + GAP / 2;
+                const sy = r * tileH + GAP / 2;
+                const sw = tileW - GAP;
+                const sh = tileH - GAP;
+
+                /* для круга/ромба/треугольника — квадратный bbox по меньшей стороне */
+                const s  = Math.min(sw, sh);
+                const ox = sx + (sw - s) / 2;
+                const oy = sy + (sh - s) / 2;
+                const cx = ox + s / 2;
+                const cy = oy + s / 2;
+
+                ctx.save();
+                ctx.beginPath();
+
+                switch (shape) {
+                    case 'square':
+                        /* краевые квадраты = вся клетка sw×sh, никакой обрезки */
+                        ctx.rect(sx, sy, sw, sh);
+                        break;
+                    case 'circle':
+                        ctx.arc(cx, cy, s / 2, 0, Math.PI * 2);
+                        break;
+                    case 'diamond':
+                        ctx.moveTo(cx, oy); ctx.lineTo(ox + s, cy);
+                        ctx.lineTo(cx, oy + s); ctx.lineTo(ox, cy);
+                        ctx.closePath();
+                        break;
+                    default: /* triangle */
+                        ctx.moveTo(cx, oy);
+                        ctx.lineTo(ox + s, oy + s);
+                        ctx.lineTo(ox,     oy + s);
+                        ctx.closePath();
+                }
+
+                ctx.clip();
+                ctx.drawImage(img, 0, 0, W, H);
+                ctx.restore();
+            }
+        }
+        return true;
+    }
+
+    function setup(phEl) {
+        if (phEl._mosaicInit) return;
+        phEl._mosaicInit = true;
+
+        const img = phEl.tagName === 'IMG' ? phEl : phEl.querySelector('img');
+        if (!img) return;
+
+        const host = phEl.tagName === 'IMG' ? phEl.parentElement : phEl;
+        if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+
+        const cv = document.createElement('canvas');
+        cv.style.cssText =
+            'position:absolute;pointer-events:none;opacity:0;transition:opacity .45s ease;';
+        host.appendChild(cv);
+
+        function positionCanvas() {
+            if (phEl.tagName !== 'IMG') {
+                cv.style.top = '0'; cv.style.left = '0';
+                cv.style.width = '100%'; cv.style.height = '100%';
+            } else {
+                const hr = host.getBoundingClientRect();
+                const ir = img.getBoundingClientRect();
+                cv.style.left   = (ir.left - hr.left) + 'px';
+                cv.style.top    = (ir.top  - hr.top)  + 'px';
+                cv.style.width  = ir.width  + 'px';
+                cv.style.height = ir.height + 'px';
+            }
+        }
+
+        let dirty = true;
+
+        function tryDraw() {
+            positionCanvas();
+            if (!dirty) return true;
+            if (!img.complete || !img.naturalWidth) return false;
+            const ok = renderMosaic(cv, img);
+            if (ok) dirty = false;
+            return ok;
+        }
+
+        phEl.addEventListener('mouseenter', () => { if (tryDraw()) cv.style.opacity = '1'; });
+        phEl.addEventListener('mouseleave', () => { cv.style.opacity = '0'; });
+        window.addEventListener('resize',   () => { dirty = true; });
+        img.addEventListener('load',        () => { dirty = true; });
+    }
+
+    function init() {
+        document.querySelectorAll('[class]').forEach(el => {
+            if (/\bph\d+\b/.test(el.className)) setup(el);
+        });
+    }
+
+    document.readyState === 'loading'
+        ? document.addEventListener('DOMContentLoaded', init)
+        : init();
+})();
+
+document.querySelectorAll('.clickable').forEach(el => {
+    el.addEventListener('click', () => {
+        const href = el.getAttribute('data-href');
+        if (href) window.location.href = href;
+    });
+});
+// ========== КОРОТКИЙ ВАРИАНТ С ЦИКЛОМ ==========
+(function() {
+    const groups = [
+        { container: '.image_swap1', showImg: true },   // ph3 - показываем фото
+        { container: '.image_swap2', showImg: false },  // ph4 - показываем див
+        { container: '.image_swap3', showImg: true },   // ph5 - показываем фото
+        { container: '.image_swap4', showImg: false }   // ph6 - показываем див
+    ];
+    
+    // Инициализация
+    groups.forEach(group => {
+        const container = document.querySelector(group.container);
+        if (!container) return;
+        
+        const img = container.querySelector('img');
+        const div = container.querySelector('div');
+        
+        if (group.showImg) {
+            img.style.zIndex = '2';
+            div.style.zIndex = '1';
+        } else {
+            img.style.zIndex = '1';
+            div.style.zIndex = '2';
+        }
+        
+        // Сохраняем ссылки для переключения
+        group.img = img;
+        group.div = div;
+    });
+    
+    setInterval(() => {
+        groups.forEach(group => {
+            if (group.showImg) {
+                // Сейчас фото видно, переключаем на див
+                group.img.style.zIndex = '1';
+                group.div.style.zIndex = '2';
+            } else {
+                // Сейчас див виден, переключаем на фото
+                group.img.style.zIndex = '2';
+                group.div.style.zIndex = '1';
+            }
+            
+            group.showImg = !group.showImg;
+        });
+    }, 2000);
+})();
+
 });
