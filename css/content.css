@@ -193,24 +193,40 @@ video {
 }
 
 .section3 {
-    height: 97vh;
+    height: 103vh;
     position: sticky;
     top: 0;
     border: none;
+    padding-bottom: 3vw;
     will-change: transform;
     z-index: 2; 
 }
 
 
-.section4 {
-    height: 124svh;
+.section_none{
     position: relative;
+    background-color: #ebf4e1;
+    height: 3vw;
+}
+
+
+
+
+.section4 {
+    height: 124vh;
+    position: relative;
+    background-color: #ffffff;
+    margin-top: -2vw;
+    z-index: -2;
+    
+
 }
 
 .section5 {
     height: 95vh;
     position: relative;
     background-color: #FFF59F;
+    
 }
 
 
@@ -594,7 +610,7 @@ video {
 .opener_btn {
     width: 100%;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     align-items: center;
     gap: 1.2vw;
     padding-top: 1.2vw;
@@ -784,6 +800,20 @@ video {
     
 }
 
+.opener_photo {
+    display: none;
+    width: 36.32vw;
+    height: 46.94vw;
+    object-fit: cover;
+    position: absolute;
+    margin-left: 50.69vw;
+    margin-top: 16vw;
+}
+
+.opener_photo.active {
+    display: block;
+}
+
 
 .opener_tags2:hover #span_btn {
     background-color: #FFF59F;
@@ -798,7 +828,7 @@ video {
 .opener_tags2 span:hover{
     background-color: #000000;
     color: white;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     cursor: pointer;
 }
 

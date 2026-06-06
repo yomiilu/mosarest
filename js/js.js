@@ -185,29 +185,30 @@ document.addEventListener("DOMContentLoaded", function () {
     updateProgress();
 
     document.querySelectorAll('#opener1 .opener_btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            var item = btn.parentElement;
-            var wasOpen = item.classList.contains('open');
+    btn.addEventListener('click', function() {
+        var item = btn.parentElement;
+        var wasOpen = item.classList.contains('open');
 
-            document.querySelectorAll('#opener1 .opener_item').forEach(function(it) {
-                it.classList.remove('open');
-                it.querySelector('.opener_body').style.maxHeight = '0px';
-            });
+        document.querySelectorAll('#opener1 .opener_item').forEach(function(it) {
+            it.classList.remove('open');
+            it.querySelector('.opener_body').style.maxHeight = '0px';
+        });
 
-            if (!wasOpen) {
-                item.classList.add('open');
-                var body = item.querySelector('.opener_body');
-                var inner = item.querySelector('.opener_inner');
-                body.style.maxHeight = inner.scrollHeight + 'px';
-            }
+        if (!wasOpen) {
+            item.classList.add('open');
+            var body = item.querySelector('.opener_body');
+            body.style.maxHeight = item.querySelector('.opener_inner').scrollHeight + 'px';
+        }
+
+        // переключаем фото по индексу
+        var items = [...document.querySelectorAll('#opener1 .opener_item')];
+        var activeItem = document.querySelector('#opener1 .opener_item.open');
+        var idx = items.indexOf(activeItem);
+        document.querySelectorAll('.opener_photo').forEach((p, i) => {
+            p.classList.toggle('active', i === idx);
         });
     });
-
-    var first = document.querySelector('#opener1 .opener_item.open');
-    if (first) {
-        var b = first.querySelector('.opener_body');
-        b.style.maxHeight = first.querySelector('.opener_inner').scrollHeight + 'px';
-    }
+});
     
 
  (function () {
@@ -341,7 +342,7 @@ for(let i = 1; i <= 5; i++) {
         const ctx = cv.getContext('2d');
         ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
-        ctx.fillStyle = '#fff';
+        ctx.fillStyle = getComputedStyle(img.closest('section')).backgroundColor;
         ctx.fillRect(0, 0, W, H);
 
         /* округляем кол-во клеток → делим размер ровно, без остатка */
@@ -460,7 +461,6 @@ document.querySelectorAll('.clickable').forEach(el => {
         if (href) window.location.href = href;
     });
 });
-// ========== КОРОТКИЙ ВАРИАНТ С ЦИКЛОМ ==========
 (function() {
     const groups = [
         { container: '.image_swap1', showImg: true },   // ph3 - показываем фото
