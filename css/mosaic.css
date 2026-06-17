@@ -1,17 +1,421 @@
-.section1_mosaic{
-    height: 100vw;
-    position: relative;
+
+.mosaic_page {
+    margin-top: 4.4vw;
+    background: #fff;
+    border-bottom: 0.05vw solid #000;
 }
 
-.mosaichnaya{
+.mosaic_hero {
+    padding: 3vw 3.5vw 2vw 3.5vw;
+    border-bottom: 0.05vw solid #000;
+}
+
+.mosaic_hero_title {
+    font-size: 4vw;
+    font-family: "Unb-SB";
+    line-height: 4.8vw;
+    color: #000;
+    margin-top: -1.5vw;
+    margin-bottom: 0.8vw;
+}
+
+.mosaic_hero_desc {
+    font-family: "Onest";
+    font-size: 1.04vw;
+    color: #1a1a1a;
+    line-height: 1.6;
+    width: 40vw;
+}
+
+.mosaic_steps_row {
+    display: grid;
+    grid-template-columns: 45.83vw 1fr;
+    border-bottom: 0.05vw solid #000;
+}
+
+.mosaic_step_cell {
+    padding: 1.5vw 3.5vw;
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
+    border-right: 0.05vw solid #000;
+}
+
+.mosaic_step_cell:last-child {
+    border-right: none;
+}
+
+.step_num {
+    width: 2.2vw;
+    height: 2.2vw;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    font-family: "Unb-SB";
+    font-size: 0.85vw;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.step_text {
+    font-family: "Unb-SB";
+    font-size: 1.1vw;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #000;
+}
+
+/* ===== ОСНОВНОЙ БЛОК ===== */
+.mosaic_body {
+    display: grid;
+    grid-template-columns: 45.83vw 1fr;
+    
+}
+
+/* ===== ЛЕВАЯ КОЛОНКА ===== */
+.mosaic_left {
+  
+    width:36.3vw;
+    height:30vw;
+    margin-left: 3.5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vw;
+    margin-top: 1.5vw;
+}
+
+/* --- Цвета --- */
+.colors_row {
+    display: flex;
+    gap: 0.7vw;
+}
+
+.color_sw {
+    width: 2.5vw;
+    height: 2.5vw;
+    border-radius: 50%;
+    border: 0.065vw solid rgba(0,0,0,0.25);
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.15s;
+
+}
+
+.color_sw:hover {
+    transform: translateY(-2px);
+}
+
+.color_sw.active::after {
+    content: '';
     position: absolute;
-    margin-top: 4vw;
+    inset: -0.3vw;
+    border-radius: 50%;
+    border: 0.12vw solid #000;
+}
+
+/* --- Паттерны 2x2 --- */
+.patterns_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.39vw;
+}
+
+.pattern_card {
+    border: 0.05vw solid #000;
+    cursor: pointer;
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.15s;
+    display: flex;
+    flex-direction: column;
+}
+
+.pattern_card:hover {
+    transform: translateY(-2px);
+}
+
+.pattern_preview {
+    aspect-ratio: 1 / 1;
+    background: #f0eeeb;
+    border-bottom: 0.05vw solid #000;
+    display: grid;
+    place-items: center;
+    padding: 1.5vw;
+}
+
+.pattern_preview svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.pattern_card.active .pattern_preview {
+    background: #cdea8c;
+}
+
+.pattern_label {
+    padding: 0.75vw 1vw;
+    font-family: "Unb-SB";
+    font-size: 0.85vw;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    background: #e0e0e0;
+    color: #000;
+    transition: background 0.15s, color 0.15s;
+}
+
+.pattern_card.active .pattern_label {
+    background: #9CE246;
+    color: #000;
+}
+
+
+/* ===== ПРАВАЯ КОЛОНКА ===== */
+.mosaic_right {
+    padding: 2vw 2vw 2vw 2vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
     margin-left: 3vw;
 }
 
-.mosaich1{
-    width: 45vw;
-    margin-left: 3.4vw;
+/* --- Тулбар --- */
+.canvas_toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8vw 1.2vw;
+    border: 0.05vw solid #000;
+    background: #fff;
+    width: 45.7vw;
+}
+
+.toolbar_left {
+    display: flex;
+    align-items: center;
+    gap: 0.6vw;
+}
+
+.toolbar_dot {
+    width: 0.9vw;
+    height: 0.9vw;
+    border-radius: 0.2vw;
+    background: #9CE246;
+    border: 0.065vw solid rgba(0,0,0,0.3);
+    flex-shrink: 0;
+}
+
+.toolbar_info_text {
+    font-family: "Onest";
+    font-size: 0.9vw;
+    color: #000;
+}
+
+.toolbar_tools {
+    display: flex;
+    gap: 0.5vw;
+}
+
+.tool_btn {
+    padding: 0.45vw 0.9vw;
+    border: 0.065vw solid #000;
+    border-radius: 30vw;
+    font-family: "Onest";
+    font-size: 0.85vw;
+    background: #fff;
+    cursor: pointer;
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 0.3vw;
+    user-select: none;
+}
+
+.tool_btn:hover { background: #9CE246; }
+.tool_danger:hover { background: #FE969D; }
+
+/* --- Сетка рисования --- */
+.canvas_grid {
+    width: 45.69vw;
+    height: 42.43vw;
+    border: 0.1vw solid #000;
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: repeat(13, 1fr);
+    overflow: hidden;
+    user-select: none;
+    cursor: cell;
+    flex-shrink: 0;
+    background: #fafaf8;
+}
+
+.canvas_cell {
+    border-right: 1px solid #dedad4;
+    border-bottom: 1px solid #dedad4;
+    display: grid;
+    place-items: center;
+    transition: background 0.06s;
+}
+
+.canvas_cell:hover { background: rgba(148, 205, 77, 0.25); }
+
+.canvas_cell svg {
+    width: 80%;
+    height: 80%;
+    display: block;
+    pointer-events: none;
+}
+
+/* --- Кнопки НАЗАД / ПОДТВЕРДИТЬ --- */
+.canvas_actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.39vw;
+    width: 45.69vw;
+}
+
+.canvas_back_btn {
+    height: 4.5vw;
+    border: 0.05vw solid #000;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Unb-SB";
+    font-size: 1.04vw;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.15s;
+    gap: 1vw;
+}
+
+.canvas_back_btn:hover { background: #f0f0f0; }
+
+.canvas_confirm_btn {
+    height: 4.5vw;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    gap: 1vw;
+}
+
+.canvas_confirm_btn::before {
+    content: '';
     position: absolute;
-    margin-top: 12vw;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+    background: #94CD4D;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.2s cubic-bezier(0.76, 0, 0.24, 1);
+    z-index: 1;
+}
+
+.canvas_confirm_btn:hover::before { transform: scaleX(1); }
+
+.canvas_confirm_btn span {
+    position: relative;
+    z-index: 2;
+    font-family: "Unb-SB";
+    font-size: 1.04vw;
+    letter-spacing: 0.05em;
+    background: linear-gradient(to right, #fff 50%, #000 50%);
+    background-size: 200% 100%;
+    background-position: right center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: background-position 0.16s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.canvas_confirm_btn:hover span { background-position: left center; }
+
+
+.go_to_btn0{
+    margin-top: 1.5vw;
+    width: 36vw;
+    height: 5vw;
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    margin-left: 3.5vw;
+
+}
+
+.arrow2{
+    margin-left: 30vw;
+    position: absolute;
+    margin-top: -2.5vw;
+    width: 13vw;
+}
+
+/* ———————————————————————————————————1 */ 
+
+.go_to_btn0 {
+    margin-top: -8vw;
+    width: 36vw;
+    height: 5vw;
+    position: relative;
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4vw;
+}
+
+.go_to_btn0::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc(100% - 10vw);
+    height: 100%;
+    background: #94CD4D;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.2s cubic-bezier(0.76, 0, 0.24, 1);
+    z-index: 1;
+}
+
+.go_to_btn0:hover::before {
+    transform: scaleX(1);
+}
+.go_to_btn0:hover .sq {
+    transform: scale(1);
+}
+.btntext.bt1 {
+    position: relative;
+    z-index: 3;
+    margin: 0 0 0 1.5vw;
+    background: linear-gradient(to right, #000 50%, #fff 50%);
+    background-size: 200% 100%;
+    background-position: right center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: background-position 0.16s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.go_to_btn0:hover .btntext.bt1 {
+    background-position: left center;
+}
+
+.arrow2 {
+    margin-left: 24.3vw;
+    position: absolute;
+    margin-top: -0.3vw;
+    z-index: 3;
+    transition: opacity 0.04s ;
+
+}
+
+.go_to_btn0:hover .arrow2 {
+    opacity: 0;
 }

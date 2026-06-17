@@ -1,50 +1,233 @@
 <!DOCTYPE html>
-<html lang="ru" dir="ltr"> 
+<html lang="ru" dir="ltr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./css/style.css" rel="stylesheet" type="text/css"/>
-    <script src="./js/js.js" charset="utf-8"></script>
-    <title>Second_life_garden_module3</title>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Мозаичная — Mosarest</title>
 </head>
 <body>
-    <div class="progress"></div> 
-    <div class="header">
-        <div class="logo"><a href="./index.html">Logo</a></div>
-        <ul class="li-list">
-            <li><a class="header_text" href="./tarifs.html">тарифы</a></li>
-            <div class="square1" onclick="location.href='./tarifs.html'"> </div>
-            
-            <li><a class="header_text" href="./merch.html">мерч</a></li>
-            <div class="square2" onclick="location.href='./merch.html'"> </div>
-            
-            <li><a class="header_text" href="./workers.html">сотрудники</a></li>
-            <div class="square3" onclick="location.href='./workers.html'"> </div>
-            
-            <li><a class="header_text" id="mosaic" href="./mosaic.html">мозаичная</a></li>
-            <div class="square4" id="square4" onclick="location.href='./mosaic.html'"> </div>
-            
-            <li><a class="header_text" href="./contacts.html">контакты</a></li>
-            <div class="square5" onclick="location.href='./contacts.html'"> </div>
-        </ul>
-    </div>
-    <section class="section1_mosaic">
-        <p class="bigtext mosaichnaya">МОЗАИЧНАЯ</p>
 
+<div class="progress1"></div>
+<div class="header">
+    <div class="logo"><a href="./index.html">Logo</a></div>
+    <a class="naming n1">MOSAREST</a>
+    <ul class="li-list">
+        <li><a class="header_text" href="./tarifs.html">тарифы</a></li>
+        <div class="square1" onclick="location.href='./tarifs.html'"></div>
+
+        <li><a class="header_text" href="./merch.html">мерч</a></li>
+        <div class="square2" onclick="location.href='./merch.html'"></div>
+
+        <li><a class="header_text" href="./workers.html">сотрудники</a></li>
+        <div class="square3" onclick="location.href='./workers.html'"></div>
+
+        <li><a class="header_text" id="mosaic" href="./mosaic.html">мозаичная</a></li>
+        <div class="square4" id="square4" onclick="location.href='./mosaic.html'"></div>
+
+        <li><a class="header_text" href="./contacts.html">контакты</a></li>
+        <div class="square5" onclick="location.href='./contacts.html'"></div>
+    </ul>
+</div>
+
+<section class="mosaic_page">
         <div class="container">
-            <div class="grid">
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
+        <div class="grid">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
+    </div>
+
+    <!-- Заголовок -->
+    <div class="mosaic_hero">
+        <p class="mosaic_hero_title">МОЗАИЧНАЯ</p>
+        <p class="mosaic_hero_desc">Создай уникальный дизайн для шоппера прямо сейчас.<br>Выбери текстуру, нарисуй узор, мы соберём его из настоящей смальты на месте и нанесем на товар.</p>
+    </div>
+
+    <!-- 01 и 02 на одном уровне -->
+    <div class="mosaic_steps_row">
+        <div class="mosaic_step_cell">
+            <div class="step_num">01</div>
+            <span class="step_text">Выберите цвет и текстуру</span>
+        </div>
+        <div class="mosaic_step_cell">
+            <div class="step_num">02</div>
+            <span class="step_text">Нарисуйте дизайн</span>
+        </div>
+    </div>
+
+    <!-- Тело: лево + право -->
+    <div class="mosaic_body">
+
+        <!-- ЛЕВАЯ: цвета, паттерны, корзина -->
+        <div class="mosaic_left">
+
+            <div class="colors_row" id="colors_row">
+                <div class="color_sw active" data-color="#9CE246" style="background:#9CE246;"></div>
+                <div class="color_sw" data-color="#FFEC1A" style="background:#FFEC1A;"></div>
+                <div class="color_sw" data-color="#0A0A0A" style="background:#0A0A0A;"></div>
+                <div class="color_sw" data-color="#FAFAF6" style="background:#FAFAF6; border:0.1vw solid #ccc;"></div>
+                <div class="color_sw" data-color="#F5A6B0" style="background:#F5A6B0;"></div>
             </div>
+
+            <div class="patterns_grid" id="patterns_grid">
+
+                <div class="pattern_card active" data-pattern="square">
+                    <div class="pattern_preview">
+                        <svg viewBox="0 0 60 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4"  y="4"  width="14" height="14" rx="2"/>
+                            <rect x="23" y="4"  width="14" height="14" rx="2"/>
+                            <rect x="42" y="4"  width="14" height="14" rx="2"/>
+                            <rect x="4"  y="23" width="14" height="14" rx="2"/>
+                            <rect x="23" y="23" width="14" height="14" rx="2"/>
+                            <rect x="42" y="23" width="14" height="14" rx="2"/>
+                            <rect x="4"  y="42" width="14" height="14" rx="2"/>
+                            <rect x="23" y="42" width="14" height="14" rx="2"/>
+                            <rect x="42" y="42" width="14" height="14" rx="2"/>
+                        </svg>
+                    </div>
+                    <div class="pattern_label">Выбрать</div>
+                </div>
+
+                <div class="pattern_card" data-pattern="triangle">
+                    <div class="pattern_preview">
+                        <svg viewBox="0 0 60 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="11,4 20,20 2,20"/>
+                            <polygon points="30,4 39,20 21,20"/>
+                            <polygon points="49,4 58,20 40,20"/>
+                            <polygon points="11,23 20,39 2,39"/>
+                            <polygon points="30,23 39,39 21,39"/>
+                            <polygon points="49,23 58,39 40,39"/>
+                            <polygon points="11,42 20,58 2,58"/>
+                            <polygon points="30,42 39,58 21,58"/>
+                            <polygon points="49,42 58,58 40,58"/>
+                        </svg>
+                    </div>
+                    <div class="pattern_label">Выбрать</div>
+                </div>
+
+                <div class="pattern_card" data-pattern="diamond">
+                    <div class="pattern_preview">
+                        <svg viewBox="0 0 60 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4"  y="4"  width="14" height="14" rx="1" transform="rotate(45 11 11)"/>
+                            <rect x="23" y="4"  width="14" height="14" rx="1" transform="rotate(45 30 11)"/>
+                            <rect x="42" y="4"  width="14" height="14" rx="1" transform="rotate(45 49 11)"/>
+                            <rect x="4"  y="23" width="14" height="14" rx="1" transform="rotate(45 11 30)"/>
+                            <rect x="23" y="23" width="14" height="14" rx="1" transform="rotate(45 30 30)"/>
+                            <rect x="42" y="23" width="14" height="14" rx="1" transform="rotate(45 49 30)"/>
+                            <rect x="4"  y="42" width="14" height="14" rx="1" transform="rotate(45 11 49)"/>
+                            <rect x="23" y="42" width="14" height="14" rx="1" transform="rotate(45 30 49)"/>
+                            <rect x="42" y="42" width="14" height="14" rx="1" transform="rotate(45 49 49)"/>
+                        </svg>
+                    </div>
+                    <div class="pattern_label">Выбрать</div>
+                </div>
+
+                <div class="pattern_card" data-pattern="circle">
+                    <div class="pattern_preview">
+                        <svg viewBox="0 0 60 60" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="7"/>
+                            <circle cx="30" cy="11" r="7"/>
+                            <circle cx="49" cy="11" r="7"/>
+                            <circle cx="11" cy="30" r="7"/>
+                            <circle cx="30" cy="30" r="7"/>
+                            <circle cx="49" cy="30" r="7"/>
+                            <circle cx="11" cy="49" r="7"/>
+                            <circle cx="30" cy="49" r="7"/>
+                            <circle cx="49" cy="49" r="7"/>
+                        </svg>
+                    </div>
+                    <div class="pattern_label">Выбрать</div>
+                </div>
+
+
+                
+
+            </div>
+
+
         </div>
 
-        <p class="medtext mosaich1">СОЗДАЙ УНИКАЛЬНЫЙ ДИЗАЙН ДЛЯ ШОППЕРА ПРЯМО СЕЙЧАС</p>
-    </section>
+        
+        
+
+        <!-- ПРАВАЯ: тулбар + сетка + кнопки -->
+        <div class="mosaic_right">
+
+            <div class="canvas_toolbar">
+                <div class="toolbar_left">
+                    <div class="toolbar_dot" id="toolbar_dot"></div>
+                    <span class="toolbar_info_text" id="toolbar_info_text">Квадраты — зелёный</span>
+                </div>
+                <div class="toolbar_tools">
+                    <div class="tool_btn" id="tool_erase">⬚ Ластик</div>
+                    <div class="tool_btn" id="tool_random">⊞ Рандом</div>
+                    <div class="tool_btn tool_danger" id="tool_clear">⊘ Очистить</div>
+                </div>
+            </div>
+
+            <div class="canvas_grid" id="canvas_grid"></div>
+
+            <div class="canvas_actions">
+                <div class="canvas_back_btn" id="canvas_back_btn">←——  НАЗАД</div>
+                <div class="canvas_confirm_btn" id="canvas_confirm_btn"><span>ПОДТВЕРДИТЬ  ——→</span></div>
+            </div>
+
+        </div>
+
+    </div>
+
+                <div class="go_to_btn0 btn-animated" data-href="./tarifs.html">
+                <p class="btntext bt1">В КОРЗИНУ – 4 199 ₽</p>
+                <img class="arrow2" src="img/Arrow 9.svg" alt="arrow">
+                <div class="squares-canvas">
+                 </div>
+</section>
+
+<section class="section6">
+    <div class="podval_1">
+        <p class="opener_title num1">ТАРИФЫ</p>
+        <p class="basic num2 clickable" data-href="./tarifs.html">В одиночку</p>
+        <p class="basic num2 clickable" data-href="./tarifs.html">Для двоих</p>
+        <p class="basic num2 clickable" data-href="./tarifs.html">С семьёй</p>
+        <p class="basic num2 clickable" data-href="./tarifs.html">Для компании</p>
+    </div>
+    <div class="podval_2">
+        <p class="opener_title num1">МАГАЗИН</p>
+        <p class="basic num2 clickable" data-href="./mosaic.html">Мозаичная</p>
+        <p class="basic num2 clickable" data-href="./merch.html">Мерч</p>
+    </div>
+    <div class="podval_3">
+        <p class="opener_title num1">ИНФОРМАЦИЯ</p>
+        <p class="basic num2 clickable" data-href="./contacts.html">Контакты</p>
+        <p class="basic num2 clickable" data-href="./contacts.html">Сотрудники</p>
+        <p class="basic num2 clickable" data-href="./contacts.html">Как добраться</p>
+        <p class="basic num2 clickable" data-href="./contacts.html">Политика конфиденциальности</p>
+    </div>
+    <div class="podval_4">
+        <p class="opener_title num1">АВТОР И КУРАТОРЫ</p>
+        <p class="basic num2 clickable">Чернышенко Евгения Б25УКИ02</p>
+        <p class="basic num2 clickable">Рихтер Камила</p>
+        <p class="basic num2 clickable">Латышев Артем</p>
+        <p class="basic num2 clickable">Аракелян Нона</p>
+    </div>
+    <p class="zagolovok zg4">MOSAREST</p>
+    <div class="podv_poloska"></div>
+
+    
+</section>
+
+<script src="js/js.js"></script>
+<!-- В вашем HTML -->
+<script src="js/mosaic.js"></script>
+</body>
+</html>

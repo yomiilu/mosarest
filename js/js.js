@@ -1,4 +1,389 @@
+(function () {
+    'use strict';
+
+    // ===== МОЗАИЧНАЯ СЕТКА =====
+// Выносим в глобальную область видимости
+(function() {
+    'use strict';
+    
+    // Проверяем, есть ли элементы на странице
+    var canvas_grid = document.getElementById('canvas_grid');
+    if (!canvas_grid) return; // Если нет сетки - выходим
+    
+    var active_pattern = 'square';
+    var active_color = '#9CE246';
+    var is_drawing = false;
+    var draw_mode = 'paint';
+    var COLS = 14;
+    var ROWS = 13;
+    var TOTAL = COLS * ROWS;
+    var cells = [];
+
+    var pattern_names = {
+        square:   'Квадраты',
+        triangle: 'Треугольники',
+        diamond:  'Ромбы',
+        circle:   'Точки'
+    };
+
+    var color_names = {
+        '#9CE246': 'зелёный',
+        '#FFEC1A': 'жёлтый',
+        '#0A0A0A': 'чёрный',
+        '#FAFAF6': 'белый',
+        '#F5A6B0': 'розовый'
+    };
+
+    for (var k = 0; k < TOTAL; k++) { cells.push(null); }
+
+    // Очищаем сетку перед заполнением (на случай, если там уже что-то есть)
+    canvas_grid.innerHTML = '';
+
+    for (var i = 0; i < TOTAL; i++) {
+        var cell = document.createElement('div');
+        cell.className = 'canvas_cell';
+        cell.dataset.i = i;
+        canvas_grid.appendChild(cell);
+    }
+
+    function svg_for(pattern, color) {
+        var stroke = color === '#FAFAF6' ? '#1a1a1a' : 'none';
+        var sw = stroke === 'none' ? 0 : 1;
+        if (pattern === 'square') {
+            return '<svg viewBox="0 0 20 20"><rect x="2" y="2" width="16" height="16" rx="2" fill="' + color + '" stroke="' + stroke + '" stroke-width="' + sw + '"/></svg>';
+        }
+        if (pattern === 'triangle') {
+            return '<svg viewBox="0 0 20 20"><polygon points="10,2 18,18 2,18" fill="' + color + '" stroke="' + stroke + '" stroke-width="' + sw + '"/></svg>';
+        }
+        if (pattern === 'diamond') {
+            return '<svg viewBox="0 0 20 20"><rect x="2" y="2" width="16" height="16" rx="1" transform="rotate(45 10 10)" fill="' + color + '" stroke="' + stroke + '" stroke-width="' + sw + '"/></svg>';
+        }
+        if (pattern === 'circle') {
+            return '<svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="' + color + '" stroke="' + stroke + '" stroke-width="' + sw + '"/></svg>';
+        }
+        return '';
+    }
+
+    function render_cell(i) {
+        var cell_el = canvas_grid.children[i];
+        if (!cell_el) return;
+        if (!cells[i]) {
+            cell_el.innerHTML = '';
+            cell_el.style.background = '';
+        } else {
+            cell_el.innerHTML = svg_for(cells[i].pattern, cells[i].color);
+        }
+    }
+
+    function update_info() {
+        var p_name = pattern_names[active_pattern] || active_pattern;
+        var c_name = color_names[active_color] || '';
+        var infoText = document.getElementById('toolbar_info_text');
+        var dot = document.getElementById('toolbar_dot');
+        if (infoText) infoText.textContent = p_name + ' — ' + c_name;
+        if (dot) dot.style.background = active_color;
+    }
+
+    function paint_cell(i) {
+        cells[i] = { pattern: active_pattern, color: active_color };
+        render_cell(i);
+    }
+
+    function erase_cell(i) {
+        cells[i] = null;
+        render_cell(i);
+    }
+
+    // События
+    canvas_grid.addEventListener('mousedown', function(e) {
+        var cell_el = e.target.closest('.canvas_cell');
+        if (!cell_el) return;
+        e.preventDefault();
+        is_drawing = true;
+        var idx = parseInt(cell_el.dataset.i);
+        var already = cells[idx] && cells[idx].pattern === active_pattern && cells[idx].color === active_color;
+        draw_mode = (e.button === 2 || e.shiftKey || already) ? 'erase' : 'paint';
+        if (draw_mode === 'erase') erase_cell(idx); else paint_cell(idx);
+        update_info();
+    });
+
+    canvas_grid.addEventListener('mouseover', function(e) {
+        if (!is_drawing) return;
+        var cell_el = e.target.closest('.canvas_cell');
+        if (!cell_el) return;
+        var idx = parseInt(cell_el.dataset.i);
+        if (draw_mode === 'erase') erase_cell(idx); else paint_cell(idx);
+    });
+
+    window.addEventListener('mouseup', function() { is_drawing = false; });
+    canvas_grid.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+
+    // Паттерны
+    document.querySelectorAll('.pattern_card').forEach(function(card) {
+        card.addEventListener('click', function() {
+            document.querySelectorAll('.pattern_card').forEach(function(c) { c.classList.remove('active'); });
+            card.classList.add('active');
+            active_pattern = card.dataset.pattern;
+            update_info();
+        });
+    });
+
+    // Цвета
+    document.querySelectorAll('.color_sw').forEach(function(sw) {
+        sw.addEventListener('click', function() {
+            document.querySelectorAll('.color_sw').forEach(function(s) { s.classList.remove('active'); });
+            sw.classList.add('active');
+            active_color = sw.dataset.color;
+            update_info();
+        });
+    });
+
+    // Кнопки
+    var toolClear = document.getElementById('tool_clear');
+    if (toolClear) {
+        toolClear.addEventListener('click', function() {
+            for (var i = 0; i < TOTAL; i++) { cells[i] = null; render_cell(i); }
+        });
+    }
+
+    var toolRandom = document.getElementById('tool_random');
+    if (toolRandom) {
+        toolRandom.addEventListener('click', function() {
+            var pats = ['square', 'triangle', 'diamond', 'circle'];
+            var cols = ['#9CE246', '#FFEC1A', '#F5A6B0', '#0A0A0A'];
+            for (var i = 0; i < TOTAL; i++) {
+                if (Math.random() < 0.55) {
+                    cells[i] = {
+                        pattern: pats[Math.floor(Math.random() * pats.length)],
+                        color:   cols[Math.floor(Math.random() * cols.length)]
+                    };
+                } else {
+                    cells[i] = null;
+                }
+                render_cell(i);
+            }
+            update_info();
+        });
+    }
+
+    var toolErase = document.getElementById('tool_erase');
+    if (toolErase) {
+        toolErase.addEventListener('click', function() {
+            draw_mode = 'erase';
+        });
+    }
+
+    var backBtn = document.getElementById('canvas_back_btn');
+    if (backBtn) {
+        backBtn.addEventListener('click', function() {
+            history.back();
+        });
+    }
+
+    var confirmBtn = document.getElementById('canvas_confirm_btn');
+    if (confirmBtn) {
+        confirmBtn.addEventListener('click', function() {
+            var count = cells.filter(function(c) { return c !== null; }).length;
+            alert('Дизайн из ' + count + ' ячеек подтверждён!');
+        });
+    }
+
+    update_info();
+})();
+
+    const TILE    = 72;
+    const COLOR   = '#FFF59F';
+    const T_FILL  = 800;
+    const T_FADE  = 1000;
+
+    function buildTiles(W, H) {
+        const cols = Math.max(2, Math.round(W / TILE));
+        const rows = Math.max(2, Math.round(H / TILE));
+        const tw = W / cols, th = H / rows;
+        const list = [];
+        for (let r = 0; r < rows; r++)
+            for (let c = 0; c < cols; c++)
+                list.push({ r, c, rows, cols, tw, th, d: r + c });
+        list.sort((a, b) => a.d - b.d);
+        return { list, maxD: list[list.length - 1].d };
+    }
+
+    function drawFilledCell(ctx, t, alpha) {
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = COLOR;
+        ctx.fillRect(
+            Math.floor(t.c * t.tw) - 1,
+            Math.floor(t.r * t.th) - 1,
+            Math.ceil(t.tw) + 2,
+            Math.ceil(t.th) + 2
+        );
+        ctx.restore();
+    }
+
+    function waveAlpha(progress, d, maxD, dir) {
+        const v = (progress * (maxD + 1.5) - d) / 1.5;
+        const a = Math.max(0, Math.min(1, v));
+        return dir > 0 ? a : 1 - a;
+    }
+
+    function makeScene() {
+        const DPR = window.devicePixelRatio || 1;
+        const W = window.innerWidth, H = window.innerHeight;
+        const cv = document.createElement('canvas');
+        cv.width  = Math.round(W * DPR);
+        cv.height = Math.round(H * DPR);
+        cv.style.cssText =
+            'position:fixed;top:0;left:0;width:100%;height:100%;' +
+            'pointer-events:none;z-index:99999;';
+        document.body.appendChild(cv);
+        const ctx = cv.getContext('2d');
+        ctx.scale(DPR, DPR);
+        return { cv, ctx, W, H, ...buildTiles(W, H) };
+    }
+
+    function leave(href) {
+        const s = makeScene();
+        sessionStorage.setItem('_mt', '1');
+
+        requestAnimationFrame(() => {
+        const t0 = performance.now();
+
+        (function frame(now) {
+            const e = now - t0;
+            s.ctx.clearRect(0, 0, s.W, s.H);
+
+            if (e < T_FILL) {
+                const p = e / T_FILL;
+                s.list.forEach(t => {
+                    const a = waveAlpha(p, t.d, s.maxD, 1);
+                    if (a > 0) drawFilledCell(s.ctx, t, a);
+                });
+            } else {
+                s.ctx.clearRect(0, 0, s.W, s.H);
+                s.ctx.fillStyle = COLOR;
+                s.ctx.fillRect(0, 0, s.W, s.H);
+
+                sessionStorage.setItem('_mt_tiles_data', JSON.stringify({
+                    list: s.list.map(t => ({ r: t.r, c: t.c, d: t.d })),
+                    maxD: s.maxD,
+                    W: s.W,
+                    H: s.H,
+                    rows: s.list[0]?.rows,
+                    cols: s.list[0]?.cols,
+                    tw: s.list[0]?.tw,
+                    th: s.list[0]?.th
+                }));
+
+                window.location.href = href;
+                return;
+            }
+            requestAnimationFrame(frame);
+        })(t0);
+        });
+    }
+
+    function enter() {
+        if (sessionStorage.getItem('_mt') !== '1') {
+            return;
+        }
+        sessionStorage.removeItem('_mt');
+
+        let tilesData = null;
+        try {
+            const data = sessionStorage.getItem('_mt_tiles_data');
+            if (data) {
+                tilesData = JSON.parse(data);
+                sessionStorage.removeItem('_mt_tiles_data');
+            }
+        } catch(e) {}
+
+        let cv = document.querySelector('canvas[style*="z-index: 99999"]');
+
+        if (!cv) {
+            const s = makeScene();
+            s.ctx.fillStyle = COLOR;
+            s.ctx.fillRect(0, 0, s.W, s.H);
+            cv = s.cv;
+
+            if (!tilesData && s.list) {
+                tilesData = {
+                    list: s.list.map(t => ({ r: t.r, c: t.c, d: t.d })),
+                    maxD: s.maxD,
+                    W: s.W,
+                    H: s.H,
+                    rows: s.list[0]?.rows,
+                    cols: s.list[0]?.cols,
+                    tw: s.list[0]?.tw,
+                    th: s.list[0]?.th
+                };
+            }
+        }
+
+        if (!tilesData) {
+            cv.style.transition = 'opacity 1s ease-out';
+            cv.style.opacity = '0';
+            setTimeout(() => cv.remove(), 1100);
+            return;
+        }
+
+        const list = tilesData.list.map(t => ({
+            ...t,
+            rows: tilesData.rows,
+            cols: tilesData.cols,
+            tw: tilesData.tw,
+            th: tilesData.th
+        }));
+        const maxD = tilesData.maxD;
+        const ctx = cv.getContext('2d');
+        const W = tilesData.W;
+        const H = tilesData.H;
+
+        const t0 = performance.now();
+
+        (function frame(now) {
+            const e = now - t0;
+            ctx.clearRect(0, 0, W, H);
+
+            if (e < T_FADE) {
+                const p = e / T_FADE;
+                list.forEach(t => {
+                    const a = waveAlpha(p, t.d, maxD, -1);
+                    if (a > 0) {
+                        drawFilledCell(ctx, t, a);
+                    }
+                });
+                requestAnimationFrame(frame);
+            } else {
+                cv.remove();
+                return;
+            }
+        })(t0);
+    }
+
+    document.addEventListener('click', e => {
+        const a = e.target.closest('a[href]');
+        if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        const href = a.getAttribute('href');
+        if (!href || href.startsWith('#') || a.target === '_blank'
+            || /^(mailto|tel):/.test(href)) return;
+        if (/^https?:\/\//.test(href) && !href.startsWith(location.origin)) return;
+        e.preventDefault();
+        leave(href);
+    });
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', enter);
+    } else {
+        enter();
+    }
+
+})();
+
+
 document.addEventListener("DOMContentLoaded", function () {
+
+    
 
     const progressBar = document.querySelector('.progress');
     function updateProgress() {
@@ -34,7 +419,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let cachedMaxSize = 0;
 
     function computeMaxFontSize() {
-        const probe = 600;
+        const probe = 10000;
         ctx.font = `${FONT_WEIGHT} ${probe}px ${FONT_FAMILY}`;
         const w = ctx.measureText(TEXT).width;
         return (probe * logW / w) * 0.9;
@@ -507,4 +892,54 @@ document.querySelectorAll('.clickable').forEach(el => {
     }, 2000);
 })();
 
+function selectDate(card) {
+    // снять выделение с остальных
+    document.querySelectorAll('.date-card.selected').forEach(function(c) {
+        c.classList.remove('selected');
+    });
+    // выделить нажатую
+    card.classList.add('selected');
+}
+
+
+
 });
+
+var evCurrent = 0;
+var evTotal = 3;
+
+function eventShow(n) {
+    for (var i = 0; i < evTotal; i++) {
+        document.getElementById('event-' + i).style.display = 'none';
+    }
+    document.getElementById('event-' + n).style.display = 'block';
+}
+
+function eventNext() {
+    evCurrent = (evCurrent + 1) % evTotal;
+    eventShow(evCurrent);
+}
+
+function eventPrev() {
+    evCurrent = (evCurrent - 1 + evTotal) % evTotal;
+    eventShow(evCurrent);
+}
+
+function selectColor(el) {
+    document.querySelectorAll('.color_dot').forEach(d => d.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+function selectSize(el) {
+    el.closest('.merch2_sizes').querySelectorAll('.size_btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+function changeQty(delta) {
+    const el = document.getElementById('qty');
+    let v = parseInt(el.textContent) + delta;
+    if (v < 1) v = 1;
+    el.textContent = v;
+}
+
+

@@ -8,7 +8,7 @@
 body {
     margin: 0;
     padding: 0;
-
+    overflow-x: hidden;
 }
 
 .tg1{
@@ -63,19 +63,20 @@ video {
 }
 
 
-.progress {
+/* .progress {
     background-color: #94CD4D;
-    width: 0%;
+    width: 0vw;
     height: 0.4vw;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 10000;
-}
+} */
+
 
 .progress1 {
     background-color: #cfe9af;
-    width: 100%;
+    width: 100vw;
     height: 0.4vw;
     position: fixed;
     top: 0;
@@ -93,6 +94,7 @@ video {
     top: 0;
     z-index: 9999;
     border: 0.065vw solid black;
+    overflow-x: hidden;
     
 }
 
@@ -803,7 +805,7 @@ video {
 .opener_photo {
     display: none;
     width: 36.32vw;
-    height: 46.94vw;
+    height: 38.94vw;
     object-fit: cover;
     position: absolute;
     margin-left: 50.69vw;
