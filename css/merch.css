@@ -216,6 +216,23 @@ body {
     margin-top: 57.4vw;
 }
 
+.tovar11{
+    width: 17.5vw;
+    height: 21.6vw;
+    margin-left: 60.2vw;
+    position: absolute;
+    margin-top: -16.4vw;
+}
+
+.tovar12{
+    width: 17.5vw;
+    height: 21.6vw;
+    margin-left: 79vw;
+    position: absolute;
+    margin-top: -16.4vw;
+}
+
+
 .tovar8{
     width: 40vw;
     height: 46vw;
@@ -514,4 +531,18 @@ body {
     color: #888;
     margin-top: 1.5vw;
     line-height: 1.5;
+}
+
+
+.b5{
+    margin-left: 3.5vw;
+    margin-top: 16vw;
+    width: 37vw;
+
+}
+
+.pusto{
+    margin-top: 2vw;
+    position: absolute;
+    margin-left: 3.5vw;
 }

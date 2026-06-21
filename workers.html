@@ -10,7 +10,7 @@
 <body>
     <div class="progress"></div> 
     <div class="header">
-        <div class="logo"><a href="./index.html">Logo</a></div>
+        <div><img class="logo" src="img/logo.svg" onclick="location.href='./index.html'"></div>
         <ul class="li-list">
             <li><a class="header_text" href="./tarifs.html">тарифы</a></li>
             <div class="square1" onclick="location.href='./tarifs.html'"> </div>
@@ -27,22 +27,85 @@
             <li><a class="header_text" href="./contacts.html">контакты</a></li>
             <div class="square5" onclick="location.href='./contacts.html'"> </div>
         </ul>
+
+                <div class="bron">
+            <span id="span_btn2" onclick="location.href='./contacts.html'">Забронировать</span>
+            <img class="arrow4" src="img/Arrow 6.svg" alt="arrow">
+        </div>
     </div>
 
-        <section class="section1_workers"> 
+<section class="section1_workers"> 
+    <div class="workers-sticky">
         <img class="work1" src="img/team.png" alt="team">
+        <canvas id="mask-canvas-workers"></canvas>
+    </div>
 
-        <div class="container">
-            <div class="grid">
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-            </div>
+    <div class="container">
+        <div class="grid">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
         </div>
+    </div>
+</section>
+
+<section class="section2_workers">
+    
+</section>
+
+<section class="section4_tarifs">
+
+            <video class="bg-video" autoplay muted loop playsinline>
+                <source src="video/hiking3.mp4" type="video/mp4">
+            </video>
+            <!-- <div class="zatem"></div> -->
+            <div class="go_to_btn3 btn-animated" data-href="./tarifs.html">
+                <p class="btntext bt1">КОНТАКТЫ</p>
+                <img class="arrow1" src="img/Arrow 6.svg" alt="arrow">
+                <div class="squares-canvas">
+            </div>
+</section>
+
+       <section class="section6">
+        <div class="podval_1">
+            <p class="opener_title num1">ТАРИФЫ</p>
+            <p class="basic num2 clickable" data-href="./tarifs.html">В одиночку</p>
+            <p class="basic num2 clickable" data-href="./tarifs.html">Для двоих</p>
+            <p class="basic num2 clickable" data-href="./tarifs.html">С семьёй</p>
+            <p class="basic num2 clickable" data-href="./tarifs.html">Для компании</p>
+        </div>
+
+
+        <div class="podval_2">
+            <p class="opener_title num1 ">МАГАЗИН</p>
+            <p class="basic num2 clickable" data-href="./mosaic.html">Мозаичная</p>
+            <p class="basic num2 clickable" data-href="./mosaic.html">Мерч</p>
+        </div>
+
+        <div class="podval_3">
+            <p class="opener_title num1">ИНФОРМАЦИЯ</p>
+            <p class="basic num2 clickable" data-href="./contacts.html">Контакты</p>
+            <p class="basic num2 clickable" data-href="./contacts.html">Сотрудники</p>
+            <p class="basic num2 clickable" data-href="./contacts.html">Как добраться</p>
+            <p class="basic num2 clickable" data-href="./contacts.html">Политика конфиденциальности</p>
+        </div>
+
+        <div class="podval_4">
+            <p class="opener_title num1">АВТОР И КУРАТОРЫ</p>
+            <p class="basic num2 clickable">Чернышенко Евгения Б25УКИ02</p>
+            <p class="basic num2 clickable">Рихтер Камила</p>
+            <p class="basic num2 clickable">Латышев Артем</p>
+            <p class="basic num2 clickable">Аракелян Нона</p>
+        </div>
+
+        <p class="zagolovok zg4">MOSAREST</p>
+        <div class="podv_poloska"></div>
+
+        </section>

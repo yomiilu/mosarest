@@ -569,6 +569,164 @@ document.addEventListener("DOMContentLoaded", function () {
     init();
     updateProgress();
 
+    // ===== WORKERS PAGE: КОМАНДА =====
+    (function() {
+        const canvas2  = document.getElementById('mask-canvas-workers');
+        if (!canvas2) return;
+        const ctx2     = canvas2.getContext('2d');
+        const section2 = document.querySelector('.section1_workers');
+
+        const DPR2 = window.devicePixelRatio || 1;
+        let logW2 = 0, logH2 = 0;
+
+        function resizeCanvas2() {
+            logW2 = canvas2.offsetWidth  || window.innerWidth;
+            logH2 = canvas2.offsetHeight || window.innerHeight;
+            canvas2.width  = Math.round(logW2 * DPR2);
+            canvas2.height = Math.round(logH2 * DPR2);
+            ctx2.setTransform(DPR2, 0, 0, DPR2, 0, 0);
+        }
+
+        const TEXT2        = 'КОМАНДА';
+        const FONT_WEIGHT2 = '900';
+        const FONT_FAMILY2 = '"Unb-SB", "Arial Black", sans-serif';
+        const TEXT_Y_FRAC2 = 0.8;
+        const MAX_ALPHA2   = 0.65;
+        const LERP_SPEED2  = 0.07;
+        let cachedMaxSize2 = 0;
+
+        function computeMaxFontSize2() {
+            const probe = 10000;
+            ctx2.font = `${FONT_WEIGHT2} ${probe}px ${FONT_FAMILY2}`;
+            const w = ctx2.measureText(TEXT2).width;
+            return (probe * logW2 / w) * 0.9;
+        }
+        function getMaxSize2() {
+            if (!cachedMaxSize2) cachedMaxSize2 = computeMaxFontSize2();
+            return cachedMaxSize2;
+        }
+        function getMinSize2() { return getMaxSize2() * 0.38; }
+
+        function getScrollProgress2() {
+            if (!section2) return 0;
+            const scrolled = window.pageYOffset - section2.offsetTop;
+            const range    = section2.offsetHeight - window.innerHeight;
+            return range > 0 ? Math.max(0, Math.min(1, scrolled / range)) : 0;
+        }
+
+        function lerp2(a, b, t) { return a + (b - a) * t; }
+        function easeInOutCubic2(t) {
+            return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+        }
+        function easeOutExpo2(t) {
+            return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+        }
+
+        function drawFrame2(fontSize, overlayAlpha) {
+            ctx2.clearRect(0, 0, logW2, logH2);
+            if (overlayAlpha < 0.002) return;
+
+            ctx2.save();
+            ctx2.globalAlpha = overlayAlpha;
+            ctx2.fillStyle   = '#ffffff';
+            ctx2.fillRect(0, 0, logW2, logH2);
+            ctx2.restore();
+
+            if (fontSize < 2) return;
+
+            ctx2.save();
+            ctx2.globalCompositeOperation = 'destination-out';
+            ctx2.font         = `${FONT_WEIGHT2} ${fontSize}px ${FONT_FAMILY2}`;
+            ctx2.textAlign    = 'center';
+            ctx2.textBaseline = 'alphabetic';
+            ctx2.fillText(TEXT2, logW2 / 2, logH2 * TEXT_Y_FRAC2);
+            ctx2.restore();
+
+            const gAlpha = Math.min(overlayAlpha / MAX_ALPHA2, 1);
+
+            ctx2.save();
+            ctx2.globalCompositeOperation = 'destination-over';
+
+            const sweep = ctx2.createLinearGradient(logW2*-0.1, logH2*0.05, logW2*0.85, logH2*0.75);
+            sweep.addColorStop(0.00, `rgba(255,255,255,0)`);
+            sweep.addColorStop(0.30, `rgba(255,255,255,0)`);
+            sweep.addColorStop(0.42, `rgba(240,245,255,${0.32*gAlpha})`);
+            sweep.addColorStop(0.50, `rgba(255,255,255,${0.20*gAlpha})`);
+            sweep.addColorStop(0.60, `rgba(255,255,255,0)`);
+            sweep.addColorStop(1.00, `rgba(255,255,255,0)`);
+            ctx2.fillStyle = sweep;
+            ctx2.fillRect(0, 0, logW2, logH2);
+
+            const spec = ctx2.createLinearGradient(logW2*0.08, logH2*0.00, logW2*0.70, logH2*0.65);
+            spec.addColorStop(0.00, `rgba(255,255,255,0)`);
+            spec.addColorStop(0.44, `rgba(255,255,255,0)`);
+            spec.addColorStop(0.48, `rgba(255,255,255,${0.55*gAlpha})`);
+            spec.addColorStop(0.52, `rgba(230,240,255,${0.25*gAlpha})`);
+            spec.addColorStop(0.56, `rgba(255,255,255,0)`);
+            spec.addColorStop(1.00, `rgba(255,255,255,0)`);
+            ctx2.fillStyle = spec;
+            ctx2.fillRect(0, 0, logW2, logH2);
+
+            const rim = ctx2.createLinearGradient(logW2*0.20, logH2*0.80, logW2*0.80, logH2*0.45);
+            rim.addColorStop(0.00, `rgba(255,255,255,0)`);
+            rim.addColorStop(0.55, `rgba(200,220,255,${0.18*gAlpha})`);
+            rim.addColorStop(0.70, `rgba(255,255,255,${0.10*gAlpha})`);
+            rim.addColorStop(1.00, `rgba(255,255,255,0)`);
+            ctx2.fillStyle = rim;
+            ctx2.fillRect(0, 0, logW2, logH2);
+
+            ctx2.restore();
+        }
+
+        let curAlpha2 = 0, curSize2 = 0;
+        let tgtAlpha2 = 0, tgtSize2 = 0;
+        let isLooping2 = false;
+
+        function computeTargets2() {
+            const p   = getScrollProgress2();
+            const max = getMaxSize2();
+            const min = getMinSize2();
+            tgtAlpha2 = easeInOutCubic2(Math.min(p / 0.35, 1)) * MAX_ALPHA2;
+            tgtSize2  = min + (max - min) * easeOutExpo2(p);
+        }
+
+        function loop2() {
+            computeTargets2();
+            curAlpha2 = lerp2(curAlpha2, tgtAlpha2, LERP_SPEED2);
+            curSize2  = lerp2(curSize2,  tgtSize2,  LERP_SPEED2);
+            drawFrame2(curSize2, curAlpha2);
+
+            const settled = Math.abs(curAlpha2 - tgtAlpha2) < 0.0008 &&
+                            Math.abs(curSize2  - tgtSize2)  < 0.15;
+            if (settled) { drawFrame2(tgtSize2, tgtAlpha2); isLooping2 = false; }
+            else requestAnimationFrame(loop2);
+        }
+
+        function startLoop2() {
+            if (!isLooping2) { isLooping2 = true; requestAnimationFrame(loop2); }
+        }
+
+        function init2() {
+            resizeCanvas2();
+            cachedMaxSize2 = 0;
+            curAlpha2 = 0; curSize2 = 0;
+            drawFrame2(0, 0);
+        }
+
+        document.fonts.ready.then(() => { cachedMaxSize2 = 0; init2(); });
+        window.addEventListener('scroll', startLoop2, { passive: true });
+        window.addEventListener('resize', () => {
+            cachedMaxSize2 = 0;
+            resizeCanvas2();
+            computeTargets2();
+            curAlpha2 = tgtAlpha2;
+            curSize2  = tgtSize2;
+            drawFrame2(curSize2, curAlpha2);
+        });
+
+        init2();
+    })();
+
     document.querySelectorAll('#opener1 .opener_btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
         var item = btn.parentElement;

@@ -312,6 +312,14 @@ body {
     position: absolute;
 }
 
+.ph30{
+    width: 17.5vw;
+    height: 8.2vw;
+    margin-left: 56.7vw;
+    
+    position: absolute;
+}
+
 .listalka1{
     position: absolute;
     width: 74.2vw;
@@ -448,6 +456,27 @@ body {
     
 }
 
+.bg-video{
+    width:100vw;
+    height: 20vw;
+    z-index: 0;
+    position: absolute;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+.zatem{
+    width:100vw;
+    height: 20vw;
+    z-index: 0;
+    position: absolute;
+    margin-top: 0;
+    margin-left: 0;
+    background-color: #000;
+    opacity: 0.3;
+}
+ 
+
 .go_to_btn3 {
     margin-top: 7vw;
     margin-left: 60.2vw;
@@ -459,6 +488,7 @@ body {
     overflow: hidden;
     display: flex;
     align-items: center;
+    z-index: 1;
 }
 
 .go_to_btn3::before {

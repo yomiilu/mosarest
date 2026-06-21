@@ -125,13 +125,14 @@ video {
 }
 
 .logo {
-    background-color: #757575;
+  
     position: absolute;
-    margin-top: 0.75vw;
+    margin-top: -1vw;
     z-index: 1000000;
-    width: 2.5vw;
-    height: 2.5vw;
+    width: 6vw;
+    height: 6vw;
     margin-left: 3.5%;
+    cursor: pointer;
 }
 
 .li-list {
@@ -207,7 +208,7 @@ video {
 
 .section_none{
     position: relative;
-    background-color: #ebf4e1;
+    background-color: #E0F2CA;
     height: 3vw;
 }
 
@@ -546,6 +547,7 @@ video {
     position: absolute;
     margin-top: -0.19vw;
     border: 0.1vw solid rgb(33, 29, 29);
+    background-color: white;
 }
 
 .tovar3{
@@ -556,7 +558,7 @@ video {
     margin-top: 19vw;
 }
 
-.podp3{
+.podp4{
     width: 17.5vw;
     height: 3.5vw;
     position: absolute;
@@ -793,6 +795,31 @@ video {
     color: white;
 }
 
+#span_btn2 {
+    padding-top: 0.7vw;
+    padding-bottom: 0.7vw;
+    padding-left: 1.2vw;
+    padding-right: 10vw;
+    border: 0.065vw solid #000;
+    border-radius: 30vw;
+    font-size: 0.85vw;
+    font-family: "Onest";
+    background-color: #000000;
+    color: white;
+    cursor: pointer;
+    
+}
+
+.bron{
+    width: 40vw;
+
+    height: 2.4vw;
+    margin-left: 79vw;
+    margin-top: -1.1vw;
+
+}
+
+
 .num2:hover{
     text-decoration: underline;
 }
@@ -822,10 +849,25 @@ video {
     color: black;
 }
 
-.opener_tags2:hover .arrow2 {
+/* #span_btn2:hover {
+    background-color: #FFF59F;
+    color: black;
+} */
+
+
+.opener_tags2:hover .arrow4 {
     filter: invert(1);
 }
 
+
+.bron:hover .arrow4 {
+    filter: invert(1);
+}
+
+.bron:hover #span_btn2{ 
+    background-color: #FFF59F;
+    color: black;
+}
 
 .opener_tags2 span:hover{
     background-color: #000000;
@@ -994,8 +1036,8 @@ video {
 
 }
 
-.arrow2 {
-    margin-left: -12.8vw;
+.arrow4 {
+    margin-left:-12.8vw;
     position: absolute;
     margin-top: 0.05vw;
     z-index: 3;
@@ -1238,6 +1280,7 @@ video {
     text-decoration: underline;
 
 }
+
 
 
 

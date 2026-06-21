@@ -8,8 +8,7 @@
     <title>Second_life_garden_module3</title>
 </head>
 <body>
-    <section class="section1_contacts">
-    <div class="container">
+     <!-- <div class="container">
         <div class="grid">
             <div class="col"></div>
             <div class="col"></div>
@@ -22,10 +21,10 @@
             <div class="col"></div>
             <div class="col"></div>
         </div>
-    </div>
+    </div> -->
     <div class="progress"></div> 
     <div class="header">
-        <div class="logo"><a href="./index.html">Logo</a></div>
+        <div><img class="logo" src="img/logo.svg" onclick="location.href='./index.html'"></div>
         <ul class="li-list">
             <li><a class="header_text" href="./tarifs.html">тарифы</a></li>
             <div class="square1" onclick="location.href='./tarifs.html'"></div>
@@ -42,18 +41,40 @@
             <li><a class="header_text" id="contacts" href="./contacts.html">контакты</a></li>
             <div class="square5" id="square5" onclick="location.href='./contacts.html'"> </div>
         </ul>
+                <div class="bron">
+            <span id="span_btn2" onclick="location.href='./contacts.html'">Забронировать</span>
+            <img class="arrow4" src="img/Arrow 6.svg" alt="arrow">
+        </div>
     </div>
-    <img class="cont_photo" src="img/merch1.png" alt="cont_photo">
-    <p class="medtext cont">ПОЗВОНИ НАМ ИЛИ ЗАПОЛНИ ФОРМУ, ЕСЛИ ЕСТЬ ВОПРОСЫ</p>
- <div class="form-container">
-    <form id="contact_form" class="contact-form">
-        <input type="text" id="user_name" class="form-input" placeholder="Ваше имя">
-        <input type="tel" id="user_phone" class="form-input" placeholder="+7 (XXX) XXX-XX-XX">
-        <input type="email" id="user_email" class="form-input" placeholder="email@gmail.com">
-        <textarea id="user_message" class="form-textarea" placeholder="Задайте ваш вопрос тут"  maxlength="250"></textarea>
-        <button type="submit" class="submit">Отправить</button>
-    </form>
-    <div id="success_message" class="success-message"></div>
+
+
+
+    <section class="section1_contacts">
+        <p class="small_text st6">— КОНТАКТНАЯ ИНФОРМАЦИЯ</p>
+        <div class="map">
+            <iframe 
+                    src="https://yandex.ru/map-widget/v1/?ll=37.241939%2C55.699025&z=14.81&pt=37.241939%2C55.699025" 
+    allowfullscreen>
+            </iframe>
+    </div>
+
+   <div class="bck">
+        <p class="medtext cont">ЗАБРОНИРУЙ ДОМИК/ ЗАДАЙ ВОПРОСЫ ТУТ:</p>
+        <div class="form-container">
+            <form id="contact_form" class="contact-form">
+                <input type="text" id="user_name" class="form-input" placeholder="Ваше имя">
+                <input type="tel" id="user_phone" class="form-input" placeholder="+7 (XXX) XXX-XX-XX">
+                <input type="email" id="user_email" class="form-input" placeholder="email@gmail.com">
+                <textarea id="user_message" class="form-textarea" placeholder="Задайте ваш вопрос тут"  maxlength="250"></textarea>
+                <!-- <button  class="submit">Отправить</button> -->
+                <div class="bron2">
+                        <span id="span_btn3" onclick="location.href='./contacts.html'">Отправить сообщение</span>
+                        <img class="arrow4" src="img/Arrow 6.svg" alt="arrow">
+                </div>
+            </form>
+            <div id="success_message" class="success-message"></div>
+        </div>
+</div>
 </div>
     </section>
 
