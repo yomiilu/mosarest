@@ -149,6 +149,11 @@ video {
     font-family: "Onest";
     font-size: 1.04vw;
     text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.header_text:hover{
+    color:black 
 }
 
 .square1,.square2,.square3,.square4,.square5 {
@@ -812,7 +817,6 @@ video {
 
 .bron{
     width: 40vw;
-
     height: 2.4vw;
     margin-left: 79vw;
     margin-top: -1.1vw;
