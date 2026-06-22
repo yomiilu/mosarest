@@ -1,10 +1,8 @@
 (function() {
     'use strict';
     
-    // ===== ЖДЁМ ПОЛНОЙ ЗАГРУЗКИ DOM =====
     function initMosaic() {
         
-        // ===== ПРОВЕРКА: есть ли сетка на странице =====
         var canvas_grid = document.getElementById('canvas_grid');
         if (!canvas_grid) {
             console.log('Сетка не найдена на странице');
@@ -13,7 +11,6 @@
 
         console.log('Мозаичная сетка инициализирована');
 
-        // ===== КОНФИГУРАЦИЯ =====
         var COLS = 14;
         var ROWS = 13;
         var TOTAL = COLS * ROWS;
@@ -38,14 +35,11 @@
             '#F5A6B0': 'розовый'
         };
 
-        // ===== ЗАПОЛНЯЕМ МАССИВ =====
         for (var k = 0; k < TOTAL; k++) {
             cells.push(null);
         }
 
-        // ===== СОЗДАЁМ СЕТКУ =====
         function createGrid() {
-            // Очищаем контейнер
             canvas_grid.innerHTML = '';
             
             for (var i = 0; i < TOTAL; i++) {
@@ -58,7 +52,6 @@
             console.log('Создано ячеек: ' + TOTAL);
         }
 
-        // ===== SVG ГЕНЕРАТОР =====
         function svg_for(pattern, color) {
             var stroke = color === '#FAFAF6' ? '#1a1a1a' : 'none';
             var sw = stroke === 'none' ? 0 : 1;
@@ -77,7 +70,6 @@
             return svg ? '<svg viewBox="0 0 20 20">' + svg + '</svg>' : '';
         }
 
-        // ===== ОТРИСОВКА ЯЧЕЙКИ =====
         function render_cell(i) {
             var cell_el = canvas_grid.children[i];
             if (!cell_el) return;
@@ -90,7 +82,6 @@
             }
         }
 
-        // ===== ОБНОВЛЕНИЕ ИНФО =====
         function update_info() {
             var p_name = pattern_names[active_pattern] || active_pattern;
             var c_name = color_names[active_color] || '';
@@ -102,22 +93,149 @@
             if (dot) dot.style.background = active_color;
         }
 
-        // ===== ДЕЙСТВИЯ =====
         function paint_cell(i) {
             cells[i] = { pattern: active_pattern, color: active_color };
             render_cell(i);
+            updateButtons();
         }
 
         function erase_cell(i) {
             cells[i] = null;
             render_cell(i);
+            updateButtons();
         }
 
-        // ===== СОЗДАЁМ СЕТКУ =====
+        function getFilledCount() {
+            return cells.filter(function(c) { return c !== null; }).length;
+        }
+
+        // ===== ФУНКЦИЯ ОЧИСТКИ СЕТКИ =====
+        function clearGrid() {
+            for (var i = 0; i < TOTAL; i++) {
+                cells[i] = null;
+                render_cell(i);
+            }
+            var doneBtn = document.getElementById('done_btn');
+            if (doneBtn) {
+                doneBtn.classList.remove('done-pressed');
+            }
+            updateButtons();
+            console.log('Сетка очищена');
+        }
+
+        function updateButtons() {
+            var cartBtn = document.getElementById('cart_btn');
+            var doneBtn = document.getElementById('done_btn');
+            
+            if (!cartBtn || !doneBtn) return;
+            
+            var filledCount = getFilledCount();
+            var hasShapes = filledCount > 0;
+            var isDonePressed = doneBtn.classList.contains('done-pressed');
+            
+            if (!hasShapes) {
+                doneBtn.classList.remove('done-pressed');
+                
+                cartBtn.classList.remove('active-btn');
+                cartBtn.classList.add('inactive');
+                doneBtn.classList.remove('active-btn');
+                doneBtn.classList.add('inactive');
+                return;
+            }
+            
+            if (hasShapes && !isDonePressed) {
+                cartBtn.classList.remove('active-btn');
+                cartBtn.classList.add('inactive');
+                doneBtn.classList.remove('inactive');
+                doneBtn.classList.add('active-btn');
+                return;
+            }
+            
+            if (isDonePressed) {
+                cartBtn.classList.remove('inactive');
+                cartBtn.classList.add('active-btn');
+                doneBtn.classList.remove('active-btn');
+                doneBtn.classList.add('inactive');
+            }
+        }
+
+        function setupDoneButton() {
+            var doneBtn = document.getElementById('done_btn');
+            if (!doneBtn) return;
+            
+            doneBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                var filledCount = getFilledCount();
+                
+                if (filledCount === 0) {
+                    alert('Сначала нарисуйте фигуры на поле!');
+                    return;
+                }
+                
+                if (this.classList.contains('done-pressed')) {
+                    return;
+                }
+                
+                this.classList.add('done-pressed');
+                updateButtons();
+                console.log('Дизайн закончен! Количество ячеек: ' + filledCount);
+            });
+        }
+
+        function setupCartButton() {
+            var cartBtn = document.getElementById('cart_btn');
+            if (!cartBtn) return;
+            
+            cartBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                var doneBtn = document.getElementById('done_btn');
+                var isDonePressed = doneBtn && doneBtn.classList.contains('done-pressed');
+                
+                if (!isDonePressed) {
+                    alert('Сначала завершите дизайн, нажав кнопку "Закончено"!');
+                    return;
+                }
+                
+                var filledCount = getFilledCount();
+                if (filledCount === 0) {
+                    alert('Поле пустое. Нарисуйте дизайн!');
+                    return;
+                }
+                
+                alert('Дизайн добавлен в корзину! (' + filledCount + ' ячеек)');
+                console.log('Добавлено в корзину: ' + filledCount + ' ячеек');
+            });
+        }
+
+        // ===== ФУНКЦИЯ ДЛЯ КНОПКИ TRASH =====
+        function setupTrashButton() {
+            var trashBtn = document.querySelector('.trash');
+            if (!trashBtn) {
+                console.warn('Кнопка trash не найдена');
+                return;
+            }
+            
+            trashBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Спрашиваем подтверждение перед очисткой
+                if (getFilledCount() > 0) {
+                    if (confirm('Вы уверены, что хотите очистить всё поле?')) {
+                        clearGrid();
+                    }
+                } else {
+                    alert('Поле уже пустое!');
+                }
+            });
+        }
+
         createGrid();
 
-        // ===== НАВЕШИВАЕМ СОБЫТИЯ =====
-        // Рисование
         canvas_grid.addEventListener('mousedown', function(e) {
             var cell_el = e.target.closest('.canvas_cell');
             if (!cell_el) return;
@@ -128,6 +246,11 @@
             var idx = parseInt(cell_el.dataset.i);
             var already = cells[idx] && cells[idx].pattern === active_pattern && cells[idx].color === active_color;
             draw_mode = (e.button === 2 || e.shiftKey || already) ? 'erase' : 'paint';
+            
+            var doneBtn = document.getElementById('done_btn');
+            if (doneBtn) {
+                doneBtn.classList.remove('done-pressed');
+            }
             
             if (draw_mode === 'erase') {
                 erase_cell(idx);
@@ -159,10 +282,7 @@
             is_drawing = false;
         });
 
-        // ===== ПАТТЕРНЫ =====
         var patternCards = document.querySelectorAll('.pattern_card');
-        console.log('Найдено паттернов: ' + patternCards.length);
-        
         patternCards.forEach(function(card) {
             card.addEventListener('click', function() {
                 document.querySelectorAll('.pattern_card').forEach(function(c) {
@@ -171,14 +291,10 @@
                 card.classList.add('active');
                 active_pattern = card.dataset.pattern;
                 update_info();
-                console.log('Выбран паттерн: ' + active_pattern);
             });
         });
 
-        // ===== ЦВЕТА =====
         var colorSwatches = document.querySelectorAll('.color_sw');
-        console.log('Найдено цветов: ' + colorSwatches.length);
-        
         colorSwatches.forEach(function(sw) {
             sw.addEventListener('click', function() {
                 document.querySelectorAll('.color_sw').forEach(function(s) {
@@ -187,22 +303,20 @@
                 sw.classList.add('active');
                 active_color = sw.dataset.color;
                 update_info();
-                console.log('Выбран цвет: ' + active_color);
             });
         });
 
-        // ===== КНОПКИ =====
         var toolClear = document.getElementById('tool_clear');
         if (toolClear) {
             toolClear.addEventListener('click', function() {
-                for (var i = 0; i < TOTAL; i++) {
-                    cells[i] = null;
-                    render_cell(i);
+                if (getFilledCount() > 0) {
+                    if (confirm('Вы уверены, что хотите очистить всё поле?')) {
+                        clearGrid();
+                    }
+                } else {
+                    alert('Поле уже пустое!');
                 }
-                console.log('Сетка очищена');
             });
-        } else {
-            console.warn('Кнопка tool_clear не найдена');
         }
 
         var toolRandom = document.getElementById('tool_random');
@@ -222,8 +336,12 @@
                     }
                     render_cell(i);
                 }
+                var doneBtn = document.getElementById('done_btn');
+                if (doneBtn) {
+                    doneBtn.classList.remove('done-pressed');
+                }
+                updateButtons();
                 update_info();
-                console.log('Случайное заполнение');
             });
         }
 
@@ -231,7 +349,6 @@
         if (toolErase) {
             toolErase.addEventListener('click', function() {
                 draw_mode = 'erase';
-                console.log('Режим ластика');
             });
         }
 
@@ -242,33 +359,15 @@
             });
         }
 
-        var confirmBtn = document.getElementById('canvas_confirm_btn');
-        if (confirmBtn) {
-            confirmBtn.addEventListener('click', function() {
-                var count = cells.filter(function(c) { return c !== null; }).length;
-                alert('Дизайн из ' + count + ' ячеек подтверждён!');
-            });
-        }
+        setupDoneButton();
+        setupCartButton();
+        setupTrashButton(); // Добавляем настройку кнопки trash
 
-        // Кнопка корзины
-        var cartBtn = document.getElementById('cart_btn');
-        if (cartBtn) {
-            cartBtn.addEventListener('click', function() {
-                var count = cells.filter(function(c) { return c !== null; }).length;
-                if (count === 0) {
-                    alert('Сначала нарисуйте дизайн!');
-                } else {
-                    alert('Товар добавлен в корзину! (' + count + ' ячеек)');
-                }
-            });
-        }
-
-        // Обновляем информацию
         update_info();
+        updateButtons();
         console.log('Мозаичная сетка готова к работе!');
     }
 
-    // ===== ЖДЁМ ЗАГРУЗКИ =====
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initMosaic);
     } else {

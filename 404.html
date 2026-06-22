@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Мозаичная — Mosarest</title>
+</head>
+<body>
+
+<div class="progress1"></div>
+<div class="header">
+    <div><img class="logo" src="img/logo.svg" onclick="location.href='./index.html'"></div>
+    
+    <ul class="li-list">
+        <li><a class="header_text" href="./tarifs.html">тарифы</a></li>
+        <div class="square1" onclick="location.href='./tarifs.html'"></div>
+
+        <li><a class="header_text" href="./merch.html">мерч</a></li>
+        <div class="square2" onclick="location.href='./merch.html'"></div>
+
+        <li><a class="header_text" href="./workers.html">сотрудники</a></li>
+        <div class="square3" onclick="location.href='./workers.html'"></div>
+
+        <li><a class="header_text" id="mosaic" href="./mosaic.html">мозаичная</a></li>
+        <div class="square4" onclick="location.href='./mosaic.html'"></div>
+
+        <li><a class="header_text" href="./contacts.html">контакты</a></li>
+        <div class="square5" onclick="location.href='./contacts.html'"></div>
+    </ul>
+
+            <div class="bron">
+            <span id="span_btn2" onclick="location.href='./contacts.html'">Забронировать</span>
+            <img class="arrow4" src="img/Arrow 6.svg" alt="arrow">
+        </div>
+</div>
+
+<section class="section1_404">
+    <div class="err_grid_wrap">
+        <div class="err_grid" id="err_grid"></div>
+    </div>
+    <p class="err_msg">Ой, ячейка мозаики пропала, такой страницы нет!<br>Вернись на главную.</p>
+
+                <div class="go_to_btn_404 btn-animated" id="done_btn">
+                    <p class="btntext bt1">НА ГЛАВНУЮ</p>
+                    <img class="arrow1" src="img/Arrow 6.svg" alt="arrow">
+                    <div class="squares-canvas"></div>
+                </div>
+</section>
+
+<section class="section6">
+    <div class="podval_1">
+        <p class="opener_title num1">ТАРИФЫ</p>
+        <p class="basic num2 clickable" data-href="./tarifs.html">В одиночку</p>
+        <p class="basic num2 clickable" data-href="./tarifs.html">Для двоих</p>
+        <p class="basic num2 clickable" data-href="./tarifs.html">С семьёй</p>
+        <p class="basic num2 clickable" data-href="./tarifs.html">Для компании</p>
+    </div>
+    <div class="podval_2">
+        <p class="opener_title num1">МАГАЗИН</p>
+        <p class="basic num2 clickable" data-href="./mosaic.html">Мозаичная</p>
+        <p class="basic num2 clickable" data-href="./merch.html">Мерч</p>
+    </div>
+    <div class="podval_3">
+        <p class="opener_title num1">ИНФОРМАЦИЯ</p>
+        <p class="basic num2 clickable" data-href="./contacts.html">Контакты</p>
+        <p class="basic num2 clickable" data-href="./contacts.html">Сотрудники</p>
+        <p class="basic num2 clickable" data-href="./contacts.html">Как добраться</p>
+        <p class="basic num2 clickable" data-href="./contacts.html">Политика конфиденциальности</p>
+    </div>
+    <div class="podval_4">
+        <p class="opener_title num1">АВТОР И КУРАТОРЫ</p>
+        <p class="basic num2 clickable">Чернышенко Евгения Б25УКИ02</p>
+        <p class="basic num2 clickable">Рихтер Камила</p>
+        <p class="basic num2 clickable">Латышев Артем</p>
+        <p class="basic num2 clickable">Аракелян Нона</p>
+    </div>
+    <p class="zagolovok zg4">MOSAREST</p>
+    <div class="podv_poloska"></div>
+
+    
+</section>
+
+<script src="js/js.js"></script>
+<script src="js/mosaic.js"></script>
+<script src="js/404.js"></script>
+</body>
+</html>

@@ -24,7 +24,7 @@
     font-size: 1.04vw;
     color: #1a1a1a;
     line-height: 1.6;
-    width: 40vw;
+    width: 25vw;
 }
 
 .mosaic_steps_row {
@@ -319,6 +319,60 @@
     transform-origin: left center;
     transition: transform 0.2s cubic-bezier(0.76, 0, 0.24, 1);
     z-index: 1;
+}
+
+
+/* Состояния кнопок */
+.go_to_btn0.inactive,
+.go_to_btn_0.inactive {
+    background-color: #b0b0b0 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+}
+
+.go_to_btn0.active-btn,
+.go_to_btn_0.active-btn {
+    background-color: #000 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+.go_to_btn0.active-btn .btntext.bt1,
+.go_to_btn_0.active-btn .btntext.bt1 {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+}
+
+.go_to_btn0.inactive .btntext.bt1,
+.go_to_btn_0.inactive .btntext.bt1 {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+}
+
+.go_to_btn0.inactive .arrow6,
+.go_to_btn_0.inactive .arrow1 {
+    opacity: 0.5;
+}
+
+.go_to_btn0.active-btn .arrow6,
+.go_to_btn_0.active-btn .arrow1 {
+    opacity: 1;
+}
+
+/* Состояние для "Закончено" когда нажата */
+.go_to_btn_0.done-pressed {
+    background-color: #b0b0b0 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+}
+
+.go_to_btn_0.done-pressed .btntext.bt1 {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+}
+
+.go_to_btn_0.done-pressed .arrow1 {
+    opacity: 0.5;
 }
 
 .canvas_confirm_btn:hover::before { transform: scaleX(1); }

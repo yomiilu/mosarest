@@ -1,14 +1,11 @@
 (function () {
     'use strict';
 
-    // ===== МОЗАИЧНАЯ СЕТКА =====
-// Выносим в глобальную область видимости
-(function() {
+    (function() {
     'use strict';
     
-    // Проверяем, есть ли элементы на странице
     var canvas_grid = document.getElementById('canvas_grid');
-    if (!canvas_grid) return; // Если нет сетки - выходим
+    if (!canvas_grid) return;
     
     var active_pattern = 'square';
     var active_color = '#9CE246';
@@ -36,7 +33,6 @@
 
     for (var k = 0; k < TOTAL; k++) { cells.push(null); }
 
-    // Очищаем сетку перед заполнением (на случай, если там уже что-то есть)
     canvas_grid.innerHTML = '';
 
     for (var i = 0; i < TOTAL; i++) {
@@ -94,7 +90,6 @@
         render_cell(i);
     }
 
-    // События
     canvas_grid.addEventListener('mousedown', function(e) {
         var cell_el = e.target.closest('.canvas_cell');
         if (!cell_el) return;
@@ -118,7 +113,6 @@
     window.addEventListener('mouseup', function() { is_drawing = false; });
     canvas_grid.addEventListener('contextmenu', function(e) { e.preventDefault(); });
 
-    // Паттерны
     document.querySelectorAll('.pattern_card').forEach(function(card) {
         card.addEventListener('click', function() {
             document.querySelectorAll('.pattern_card').forEach(function(c) { c.classList.remove('active'); });
@@ -128,7 +122,6 @@
         });
     });
 
-    // Цвета
     document.querySelectorAll('.color_sw').forEach(function(sw) {
         sw.addEventListener('click', function() {
             document.querySelectorAll('.color_sw').forEach(function(s) { s.classList.remove('active'); });
@@ -138,7 +131,6 @@
         });
     });
 
-    // Кнопки
     var toolClear = document.getElementById('tool_clear');
     if (toolClear) {
         toolClear.addEventListener('click', function() {
@@ -383,8 +375,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    
-
     const progressBar = document.querySelector('.progress');
     function updateProgress() {
         if (!progressBar) return;
@@ -569,7 +559,6 @@ document.addEventListener("DOMContentLoaded", function () {
     init();
     updateProgress();
 
-    // ===== WORKERS PAGE: КОМАНДА =====
     (function() {
         const canvas2  = document.getElementById('mask-canvas-workers');
         if (!canvas2) return;
@@ -743,7 +732,6 @@ document.addEventListener("DOMContentLoaded", function () {
             body.style.maxHeight = item.querySelector('.opener_inner').scrollHeight + 'px';
         }
 
-        // переключаем фото по индексу
         var items = [...document.querySelectorAll('#opener1 .opener_item')];
         var activeItem = document.querySelector('#opener1 .opener_item.open');
         var idx = items.indexOf(activeItem);
@@ -817,7 +805,6 @@ function pickColor(grid, col, row) {
             });
         });
 
-        // navigation
         const href = btn.dataset.href;
         if (href) {
             btn.addEventListener('click', () => {
@@ -888,7 +875,7 @@ for(let i = 1; i <= 5; i++) {
         ctx.fillStyle = getComputedStyle(img.closest('section')).backgroundColor;
         ctx.fillRect(0, 0, W, H);
 
-        /* округляем кол-во клеток → делим размер ровно, без остатка */
+
         const cols  = Math.max(2, Math.round(W / TILE));
         const rows  = Math.max(2, Math.round(H / TILE));
         const tileW = W / cols;
@@ -903,7 +890,7 @@ for(let i = 1; i <= 5; i++) {
                 const sw = tileW - GAP;
                 const sh = tileH - GAP;
 
-                /* для круга/ромба/треугольника — квадратный bbox по меньшей стороне */
+                
                 const s  = Math.min(sw, sh);
                 const ox = sx + (sw - s) / 2;
                 const oy = sy + (sh - s) / 2;
@@ -915,7 +902,6 @@ for(let i = 1; i <= 5; i++) {
 
                 switch (shape) {
                     case 'square':
-                        /* краевые квадраты = вся клетка sw×sh, никакой обрезки */
                         ctx.rect(sx, sy, sw, sh);
                         break;
                     case 'circle':
@@ -926,7 +912,7 @@ for(let i = 1; i <= 5; i++) {
                         ctx.lineTo(cx, oy + s); ctx.lineTo(ox, cy);
                         ctx.closePath();
                         break;
-                    default: /* triangle */
+                    default:
                         ctx.moveTo(cx, oy);
                         ctx.lineTo(ox + s, oy + s);
                         ctx.lineTo(ox,     oy + s);
@@ -1006,13 +992,12 @@ document.querySelectorAll('.clickable').forEach(el => {
 });
 (function() {
     const groups = [
-        { container: '.image_swap1', showImg: true },   // ph3 - показываем фото
-        { container: '.image_swap2', showImg: false },  // ph4 - показываем див
-        { container: '.image_swap3', showImg: true },   // ph5 - показываем фото
-        { container: '.image_swap4', showImg: false }   // ph6 - показываем див
+        { container: '.image_swap1', showImg: true },
+        { container: '.image_swap2', showImg: false },
+        { container: '.image_swap3', showImg: true },
+        { container: '.image_swap4', showImg: false }
     ];
     
-    // Инициализация
     groups.forEach(group => {
         const container = document.querySelector(group.container);
         if (!container) return;
@@ -1028,7 +1013,6 @@ document.querySelectorAll('.clickable').forEach(el => {
             div.style.zIndex = '2';
         }
         
-        // Сохраняем ссылки для переключения
         group.img = img;
         group.div = div;
     });
@@ -1036,11 +1020,9 @@ document.querySelectorAll('.clickable').forEach(el => {
     setInterval(() => {
         groups.forEach(group => {
             if (group.showImg) {
-                // Сейчас фото видно, переключаем на див
                 group.img.style.zIndex = '1';
                 group.div.style.zIndex = '2';
             } else {
-                // Сейчас див виден, переключаем на фото
                 group.img.style.zIndex = '2';
                 group.div.style.zIndex = '1';
             }
@@ -1051,11 +1033,9 @@ document.querySelectorAll('.clickable').forEach(el => {
 })();
 
 function selectDate(card) {
-    // снять выделение с остальных
     document.querySelectorAll('.date-card.selected').forEach(function(c) {
         c.classList.remove('selected');
     });
-    // выделить нажатую
     card.classList.add('selected');
 }
 
@@ -1127,7 +1107,7 @@ function initWorkersAnimation() {
     function checkScroll() {
         if (triggered) return;
         const rect = section.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.1) {
+        if (rect.top < window.innerHeight * 0.4) {
             triggered = true;
             cards.forEach(card => {
                 if (!card.el) return;
@@ -1258,5 +1238,35 @@ function initMerchAnimation() {
     checkScroll();
 }
 
+
 document.addEventListener('DOMContentLoaded', initMerchAnimation);
 
+document.addEventListener('DOMContentLoaded', function() {
+    const firstItem = document.querySelector('.opener_wrap_tarifs .opener_item');
+    if (firstItem) {
+        firstItem.classList.add('open');
+        const body = firstItem.querySelector('.opener_body');
+        if (body) {
+            body.style.maxHeight = body.querySelector('.opener_inner').scrollHeight + 'px';
+        }
+        const firstPhoto = document.querySelector('.opener_wrap_tarifs .opener_photo');
+        if (firstPhoto) {
+            firstPhoto.classList.add('active');
+        }
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const firstItem = document.querySelector('#opener1 .opener_item');
+    if (firstItem) {
+        firstItem.classList.add('open');
+        const body = firstItem.querySelector('.opener_body');
+        if (body) {
+            body.style.maxHeight = body.querySelector('.opener_inner').scrollHeight + 'px';
+        }
+        const firstPhoto = document.querySelector('.opener_wrap .opener_photo');
+        if (firstPhoto) {
+            firstPhoto.classList.add('active');
+        }
+    }
+});

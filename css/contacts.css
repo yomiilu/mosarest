@@ -149,6 +149,22 @@
     position: absolute;
 }
 
+
+/* Для всех полей ввода и текстовых областей */
+.form-input::placeholder,
+.form-textarea::placeholder {
+    font-family: "Onest", sans-serif; /* или любой другой ваш базовый шрифт */
+    color: #757575; /* цвет текста плейсхолдера */
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* Если хотите, чтобы сам текст в полях тоже был вашим шрифтом */
+.form-input,
+.form-textarea {
+    font-family: "Onest", sans-serif; /* ваш базовый шрифт */
+    color: #000000; /* цвет введенного текста */
+}
 .tg{
     width:2vw;
     height: 2vw;
@@ -199,6 +215,7 @@
     position: absolute;
     margin-left: 1.3vw;
     margin-top: 0.7vw;
+    animation: pulse 2s ease-in-out infinite;
 }
 
 #span_btn3 {
