@@ -276,9 +276,10 @@
     }
 
     function enter() {
-        if (sessionStorage.getItem('_mt') !== '1') {
-            return;
-        }
+        // if (sessionStorage.getItem('_mt') !== '1') {
+        //     return;
+        // }
+    
         sessionStorage.removeItem('_mt');
 
         let tilesData = null;
@@ -889,7 +890,6 @@ for(let i = 1; i <= 5; i++) {
                 const sy = r * tileH + GAP / 2;
                 const sw = tileW - GAP;
                 const sh = tileH - GAP;
-
                 
                 const s  = Math.min(sw, sh);
                 const ox = sx + (sw - s) / 2;
