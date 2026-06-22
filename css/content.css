@@ -213,7 +213,7 @@ video {
 
 .section_none{
     position: relative;
-    background-color: #E0F2CA;
+    background-color: #ebf4e1;
     height: 3vw;
 }
 
@@ -1287,4 +1287,13 @@ video {
 
 
 
-
+.plashka4{
+    border-radius: 30vw;
+    width: 16vw;
+    height: 2.4vw;
+    margin-left: 1.5vw;
+    margin-top: -48vw;
+    background-color: black;
+    position: absolute;
+    z-index: 10;
+}

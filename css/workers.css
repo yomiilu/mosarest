@@ -36,5 +36,89 @@
 
 .section2_workers{
     position: relative;
-    height: 50vw
+    height: 76vw;
 }
+
+.team2{
+    width: 17.5vw;
+    height: 21.6vw;
+    margin-left: 0vw;
+    position: absolute;
+    margin-top: 2vw;
+}
+
+.st10{
+    position: absolute;
+    margin-top: -0.5vw;
+    z-index: 1000;
+    margin-left: 3.5vw;
+    width: 38vw;
+}
+
+.st11{
+    position: absolute;
+    margin-top: -0.5vw;
+    z-index: 1000;
+    margin-left: 4vw;
+    width: 38vw;
+}
+
+.st12{
+    position: absolute;
+    margin-top: -0.5vw;
+    z-index: 1000;
+    margin-left: 7vw;
+    width: 38vw;
+}
+
+.st13{
+    position: absolute;
+    margin-top: -0.5vw;
+    z-index: 1000;
+    margin-left: 4.8vw;
+    width: 38vw;
+}
+
+.cur1{
+    margin-left: 12.9vw;
+    padding-top: 13vw;
+    position: absolute;
+    
+}
+
+.cur2{
+    margin-left: 31.8vw;
+    padding-top: 13vw;
+    position: absolute;
+    
+}
+
+.cur3{
+    margin-left: 50.7vw;
+    padding-top: 13vw;
+    position: absolute;
+}   
+
+.cur4{
+    margin-left: 69.6vw;
+    padding-top: 13vw;
+    position: absolute;
+} 
+
+.cur5{
+    margin-left: 22.4vw;
+    padding-top: 43vw;
+    position: absolute;
+} 
+
+.cur6{
+    margin-left: 41.3vw;
+    padding-top: 43vw;
+    position: absolute;
+} 
+
+.cur7{
+    margin-left: 60.2vw;
+    padding-top: 43vw;
+    position: absolute;
+} 

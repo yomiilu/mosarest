@@ -1101,3 +1101,162 @@ function changeQty(delta) {
 }
 
 
+function initWorkersAnimation() {
+    const cards = [
+        { el: document.querySelector('.cur1'), fromX: '-9.4vw', fromY: '0',  delay: 0   },
+        { el: document.querySelector('.cur2'), fromX: '0',      fromY: '8vw', delay: 180 },
+        { el: document.querySelector('.cur3'), fromX: '0',      fromY: '8vw', delay: 360 },
+        { el: document.querySelector('.cur4'), fromX: '9.4vw',  fromY: '0',  delay: 0   },
+        { el: document.querySelector('.cur5'), fromX: '-9.4vw', fromY: '0',  delay: 0   },
+        { el: document.querySelector('.cur6'), fromX: '0',      fromY: '8vw', delay: 180 },
+        { el: document.querySelector('.cur7'), fromX: '9.4vw',  fromY: '0',  delay: 360 },
+    ];
+
+    cards.forEach(card => {
+        if (!card.el) return;
+        card.el.style.transition = 'none';
+        card.el.style.opacity = '0';
+        card.el.style.transform = `translate(${card.fromX}, ${card.fromY})`;
+    });
+
+    const section = document.querySelector('.section2_workers');
+    if (!section) return;
+
+    let triggered = false;
+
+    function checkScroll() {
+        if (triggered) return;
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.1) {
+            triggered = true;
+            cards.forEach(card => {
+                if (!card.el) return;
+                setTimeout(() => {
+                    card.el.style.transition = 'transform 2.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.8s ease';
+                    card.el.style.transform = 'translate(0, 0)';
+                    card.el.style.opacity = '1';
+                }, card.delay);
+            });
+            window.removeEventListener('scroll', checkScroll);
+        }
+    }
+
+    window.addEventListener('scroll', checkScroll);
+    checkScroll();
+}
+
+document.addEventListener('DOMContentLoaded', initWorkersAnimation);
+
+
+function initSection2Animation() {
+    const photos = [
+        { el: document.querySelector('.ph1'), fromX: '-6vw', fromY: '0',   delay: 0   },
+        { el: document.querySelector('.ph2'), fromX: '6vw',  fromY: '0',   delay: 120 },
+        { el: document.querySelector('.ph3'), fromX: '0',    fromY: '6vw', delay: 0   },
+        { el: document.querySelector('.ph4'), fromX: '0',    fromY: '6vw', delay: 120 },
+        { el: document.querySelector('.ph5'), fromX: '-6vw', fromY: '0',   delay: 240 },
+        { el: document.querySelector('.ph6'), fromX: '6vw',  fromY: '0',   delay: 0   },
+        { el: document.querySelector('.ph7'), fromX: '0',    fromY: '6vw', delay: 120 },
+        { el: document.querySelector('.ph8'), fromX: '-6vw', fromY: '0',   delay: 240 },
+    ];
+
+    photos.forEach(photo => {
+        if (!photo.el) return;
+        photo.el.style.transition = 'none';
+        photo.el.style.opacity = '0';
+        photo.el.style.transform = `translate(${photo.fromX}, ${photo.fromY})`;
+    });
+
+    const section = document.querySelector('.section2');
+    if (!section) return;
+
+    let triggered = false;
+
+    function checkScroll() {
+        if (triggered) return;
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.4) {
+            triggered = true;
+            photos.forEach(photo => {
+                if (!photo.el) return;
+                setTimeout(() => {
+                    photo.el.style.transition = 'transform 2.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.8s ease';
+                    photo.el.style.transform = 'translate(0, 0)';
+                    photo.el.style.opacity = '1';
+                }, photo.delay);
+            });
+            window.removeEventListener('scroll', checkScroll);
+        }
+    }
+
+    window.addEventListener('scroll', checkScroll);
+    checkScroll();
+}
+
+document.addEventListener('DOMContentLoaded', initSection2Animation);
+
+function initMerchAnimation() {
+    const items = [
+        { el: document.querySelector('.tovar4'),  fromX: '-8vw', fromY: '0',    delay: 0   },
+        { el: document.querySelector('.tovar5'),  fromX: '0',    fromY: '-8vw', delay: 150 },
+        { el: document.querySelector('.tovar6'),  fromX: '8vw',  fromY: '0',    delay: 300 },
+        { el: document.querySelector('.tovar7'),  fromX: '0',    fromY: '8vw',  delay: 450 },
+        { el: document.querySelector('.tovar8'),  fromX: '-8vw', fromY: '0',    delay: 100 },
+        { el: document.querySelector('.tovar9'),  fromX: '0',    fromY: '-8vw', delay: 250 },
+        { el: document.querySelector('.tovar10'), fromX: '8vw',  fromY: '0',    delay: 400 },
+        { el: document.querySelector('.tovar11'), fromX: '-8vw', fromY: '0',    delay: 0   },
+        { el: document.querySelector('.tovar12'), fromX: '8vw',  fromY: '0',    delay: 200 },
+    ];
+
+    items.forEach(item => {
+        if (!item.el) return;
+        item.el.style.transition = 'none';
+        item.el.style.opacity = '0';
+        item.el.style.transform = `translate(${item.fromX}, ${item.fromY})`;
+    });
+
+    const section1 = document.querySelector('.section1_merch');
+    const section2 = document.querySelector('.section2_merch');
+
+    function animateGroup(els) {
+        els.forEach(item => {
+            if (!item.el) return;
+            setTimeout(() => {
+                item.el.style.transition = 'transform 2.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.8s ease';
+                item.el.style.transform = 'translate(0, 0)';
+                item.el.style.opacity = '1';
+            }, item.delay);
+        });
+    }
+
+    const group1 = items.slice(0, 7);
+    const group2 = items.slice(7);
+    let triggered1 = false;
+    let triggered2 = false;
+
+    function checkScroll() {
+        if (!triggered1 && section1) {
+            const rect = section1.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.4) {
+                triggered1 = true;
+                animateGroup(group1);
+            }
+        }
+        if (!triggered2 && section2) {
+            const rect = section2.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.4) {
+                triggered2 = true;
+                animateGroup(group2);
+            }
+        }
+        if (triggered1 && triggered2) {
+            window.removeEventListener('scroll', checkScroll);
+        }
+    }
+
+    window.addEventListener('scroll', checkScroll);
+    checkScroll();
+}
+
+document.addEventListener('DOMContentLoaded', initMerchAnimation);
+
