@@ -242,3 +242,11 @@
     background-color: #FFF59F;
     color: black;
 }
+
+.phone{
+    width:2vw;
+    height: 2vw;
+    margin-top: -3.5vw;
+    position: absolute;
+    margin-left: 1.5vw;
+}

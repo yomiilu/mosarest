@@ -516,6 +516,13 @@ video {
     margin-left: 13%;
     position: absolute;
     margin-top: 19vw;
+    cursor: pointer;
+}
+
+.hh9{
+    width: 36.3vw;
+    height: 45vw;
+    position: relative;
 }
 
 .ph9{
@@ -532,6 +539,12 @@ video {
     border: 0.1vw solid rgb(33, 29, 29);
 }
 
+.hh10{
+    width: 17.5vw;
+    height: 21.6vw;
+    position: relative;
+}
+
 .ph10{
     width: 17.5vw;
     height: 21.6vw;
@@ -544,6 +557,7 @@ video {
     margin-left: 50.7vw;
     position: absolute;
     margin-top: 19vw;
+    cursor: pointer;
 }
 
 .podp2{
@@ -561,6 +575,7 @@ video {
     margin-left: 69.6vw;
     position: absolute;
     margin-top: 19vw;
+    cursor: pointer;
 }
 
 .podp4{
@@ -572,6 +587,12 @@ video {
 }
 
 
+
+.hh11{
+    width: 17.5vw;
+    height: 21.6vw;
+    position: relative;
+}
 
 .ph11{
     width: 17.5vw;
