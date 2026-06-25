@@ -1,5 +1,5 @@
 .section1_tarifs{
-    height: 100vw;
+    height: 40vw;
     position: relative;
 }
 
@@ -19,8 +19,7 @@ body {
 
 
 .section_tarifs {
-    min-height: 100vh;
-    height: auto;
+    height: 60vw;
     padding-bottom: 3vw;
     position: relative;
     background-color: #ffffff;

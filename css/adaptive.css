@@ -1,0 +1,133 @@
+@media screen and (min-width: 360px) and (max-width: 440px)  {
+    .header{
+        display: none;
+    }
+
+    .main {
+    position: absolute;
+    margin-top: 55vw;
+    margin-left: 31.7vw;
+    width: 50vw;
+    scale: 2.1;
+    
+}
+
+.medtext {
+    color: black;
+    font-size: 2.78vw;
+    font-family: "Unb-SB";
+    line-height: 3.9vw;
+    letter-spacing: 3%;
+}
+
+.btntext {
+    color: rgb(255, 255, 255);
+    font-size: 1.74vw;
+    font-family: "Unb-RG";
+    line-height: 3.9vw;
+    letter-spacing: 3%;
+}
+.basic {
+    color: black;
+    font-size: 4.04vw;
+    font-family: "Onest";
+    line-height: 5vw;
+    
+}
+
+.small_text {
+    color: black;
+    font-size: 0.9vw;
+    font-family: "Onest-SB";
+   
+}
+
+
+.plashka4{
+    border-radius: 30vw;
+    width: 18.5vw;
+    height: 2.4vw;
+    margin-left: 15vw;
+    margin-top: 12vw;
+    background-color: black;
+    position: absolute;
+    z-index: 30;
+    pointer-events: none;
+    scale:2;
+}
+
+.image_swap1,
+.image_swap2,
+.image_swap3,
+.image_swap4 {
+    position: absolute;
+    scale:3;
+}
+
+.image_swap1 {
+    margin-left: 3.8vw;
+    margin-top: 15.4vw;
+}
+
+.image_swap2 {
+    margin-left: 25.25vw;
+    margin-top: 15.4vw;
+}
+
+.image_swap3 {
+    margin-left: 48.7vw;
+    margin-top: 15.4vw;
+}
+
+.image_swap4 {
+    margin-left: 72.15vw;
+    margin-top: 15.4vw;
+}
+
+
+.image_swap1 img,
+.image_swap1 div,
+.image_swap2 img,
+.image_swap2 div,
+.image_swap3 img,
+.image_swap3 div,
+.image_swap4 img,
+.image_swap4 div {
+    width: 8.05vw;
+    height: 8.05vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+
+
+
+.b1 {
+    position: absolute;
+    margin-top: 21vw;
+    margin-left: 31.7vw;
+    width: 70vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

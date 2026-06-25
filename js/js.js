@@ -560,6 +560,22 @@ document.addEventListener("DOMContentLoaded", function () {
     init();
     updateProgress();
 
+    // Бургер-меню
+var burger = document.getElementById('burgerBtn');
+var nav = document.getElementById('mobileNav');
+if (burger && nav) {
+    burger.addEventListener('click', function() {
+        burger.classList.toggle('open');
+        nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+            burger.classList.remove('open');
+            nav.classList.remove('open');
+        });
+    });
+}
+
     (function() {
         const canvas2  = document.getElementById('mask-canvas-workers');
         if (!canvas2) return;
@@ -1269,4 +1285,7 @@ document.addEventListener('DOMContentLoaded', function() {
             firstPhoto.classList.add('active');
         }
     }
+
+    
 });
+

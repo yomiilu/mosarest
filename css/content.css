@@ -20,7 +20,7 @@ body {
 
 
 .section1 {
-    height: 300vh;
+    height: 300vw;
     background-color: #ffffff;
 }
 
@@ -86,7 +86,7 @@ video {
 
 
 .header {
-    margin-top: 0.4%;
+    margin-top: 0.4vw;
     background-color: white ;
     width: 100%;
     height: 4vw;
@@ -95,7 +95,7 @@ video {
     z-index: 9999;
     border: 0.065vw solid black;
     overflow-x: hidden;
-    
+    padding: 0 ;
 }
 
 .naming{
@@ -131,7 +131,7 @@ video {
     z-index: 1000000;
     width: 6vw;
     height: 6vw;
-    margin-left: 3.5%;
+    margin-left: 3.5vw;
     cursor: pointer;
 }
 
@@ -142,6 +142,7 @@ video {
     display: flex;
     gap: 4.5vw;
     margin-top: 1.4vw;
+    margin-left: 0vw;
 }
 
 .header_text {
@@ -169,11 +170,19 @@ video {
 .square1:hover,.square2:hover,.square3:hover,.square4:hover,.square5:hover {
     background-color: #000;
 }
-.square1 { margin-left: -42%; }
-.square2 { margin-left: -25.5%; }
-.square3 { margin-left: -11.4%; }
-.square4 { margin-left:  9.3%; }
-.square5 { margin-left: 29%; }
+
+
+.square1 { margin-left: -42vw; }
+.square2 { margin-left: -25.4vw; }
+.square3 { margin-left: -11.2vw; }
+.square4 { margin-left: 9.5vw; }
+.square5 { margin-left: 29.3vw; }
+
+#square1 { margin-left: -42vw; }
+#square2 { margin-left: -25.4vw; }
+#square3 { margin-left: -11.2vw; }
+#square4 { margin-left: 9.5vw; }
+#square5 { margin-left: 29.3vw; }
 
 #square1,#square2,#square3,#square4,#square5 {
     background-color: black;
@@ -183,17 +192,12 @@ video {
     width: 0.83vw;
     height: 0.83vw;
 }
-#square1 { margin-left: -42%; }
-#square2 { margin-left: -25.5%; }
-#square3 { margin-left: -11.4%; }
-#square4 { margin-left:  9.3%; }
-#square5 { margin-left: 29%; }
 
 #tarifs, #merch, #workers, #mosaic, #contacts { color: black; }
 
 
 .section2 {
-    height: 93vh;
+    height: 60vw;
     background-color: #fff;
     position: relative;
     position: sticky;
@@ -221,7 +225,7 @@ video {
 
 
 .section4 {
-    height: 124vh;
+    height: 73vw;
     position: relative;
     background-color: #ffffff;
     margin-top: -2vw;
@@ -231,7 +235,7 @@ video {
 }
 
 .section5 {
-    height: 95vh;
+    height: 53vw;
     position: relative;
     background-color: #FFF59F;
     
@@ -239,7 +243,7 @@ video {
 
 
 .section6 {
-    height: 62.8vh;
+    height: 34vw;
     position: relative;
     background-color: #000000;
 }
@@ -445,7 +449,7 @@ video {
     margin-top: 39.4vw;
 } */
 
-/* Стили для контейнеров */
+
 .image_swap1,
 .image_swap2,
 .image_swap3,
@@ -473,7 +477,7 @@ video {
     margin-top: 39.4vw;
 }
 
-/* Стили для фото и дивов */
+
 .image_swap1 img,
 .image_swap1 div,
 .image_swap2 img,
@@ -489,7 +493,7 @@ video {
     left: 0;
 }
 
-/* Убираем старые стили у ph3, ph4, ph5, ph6 */
+
 .ph3, .ph4, .ph5, .ph6 {
     position: relative;
 }
@@ -525,7 +529,7 @@ video {
     position: relative;
 }
 
-.ph9{
+.h9{
     width: 36.3vw;
     height: 45vw;
     position: relative;
@@ -838,7 +842,7 @@ video {
 
 .bron{
     width: 40vw;
-    height: 2.4vw;
+    height: 1.5vw;
     margin-left: 79vw;
     margin-top: -1.1vw;
 
@@ -1264,6 +1268,7 @@ video {
     position: absolute;
     margin-top: 1.5vw;
     font-family: "Onest-SB";
+    font-size: 1.04vw;
 }
 
 .not_full1{
@@ -1286,6 +1291,8 @@ video {
     position: absolute;
     margin-left: 1vw;
     margin-top: 5.3vw;
+    width: 5vw;
+    height: 1vw;
 }
 
 .read1{
@@ -1293,6 +1300,7 @@ video {
     position: absolute;
     margin-top: 16.2vw;
     font-family: "Onest-SB";
+    font-size: 1.2vw;
     text-decoration: underline;
 
 }
