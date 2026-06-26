@@ -920,7 +920,7 @@ video {
     margin-top: -2.5vw;
 }
 
-/* ———————————————————————————————————1 */ 
+
 
 .go_to_btn {
     margin-top: 1.7vw;
@@ -1003,7 +1003,7 @@ video {
     transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ———————————————————————————————————2 */ 
+
 
 
 .go_to_btn2 {
@@ -1349,6 +1349,17 @@ video {
     align-items: center;
     justify-content: center;
     padding-bottom: 3vw;
+}
+
+.tovar1:hover,
+.tovar2:hover,
+.tovar3:hover,
+.tovar4:hover,
+.tovar5:hover,
+.tovar6:hover,
+.tovar7:hover,
+.tovar8:hover {
+    transform: translateY(-0.8vw);
 }
 
 .err_grid_wrap {

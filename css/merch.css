@@ -539,6 +539,44 @@ body {
     margin-top: 16vw;
     width: 37vw;
 
+
+
+}
+
+/* --- Анимация подъёма товаров на странице мерча --- */
+
+.tovar1,
+.tovar2,
+.tovar3,
+.tovar4,
+.tovar5,
+.tovar6,
+.tovar7,
+.tovar8,
+.tovar9,
+.tovar10,
+.tovar11,
+.tovar12 {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    will-change: transform;
+    
+}
+
+.tovar1:hover,
+.tovar2:hover,
+.tovar3:hover,
+.tovar4:hover,
+.tovar5:hover,
+.tovar6:hover,
+.tovar7:hover,
+.tovar8:hover,
+.tovar9:hover,
+.tovar10:hover,
+.tovar11:hover,
+.tovar12:hover {
+    transform: translateY(-0.8vw);
+    box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.06);
+    cursor: pointer;
 }
 
 .pusto{

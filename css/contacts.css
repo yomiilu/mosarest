@@ -160,20 +160,20 @@
 }
 
 
-/* Для всех полей ввода и текстовых областей */
+
 .form-input::placeholder,
 .form-textarea::placeholder {
-    font-family: "Onest", sans-serif; /* или любой другой ваш базовый шрифт */
-    color: #757575; /* цвет текста плейсхолдера */
+    font-family: "Onest", sans-serif; 
+    color: #757575;
     font-size: 1.04vw;
     
 }
 
-/* Если хотите, чтобы сам текст в полях тоже был вашим шрифтом */
+
 .form-input,
 .form-textarea {
-    font-family: "Onest", sans-serif; /* ваш базовый шрифт */
-    color: #000000; /* цвет введенного текста */
+    font-family: "Onest", sans-serif; 
+    color: #000000; 
 }
 .tg{
     width:2vw;

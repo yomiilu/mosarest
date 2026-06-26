@@ -68,14 +68,14 @@
     color: #000;
 }
 
-/* ===== ОСНОВНОЙ БЛОК ===== */
+
 .mosaic_body {
     display: grid;
     grid-template-columns: 45.83vw 1fr;
     
 }
 
-/* ===== ЛЕВАЯ КОЛОНКА ===== */
+
 .mosaic_left {
   
     width:36.3vw;
@@ -87,7 +87,7 @@
     margin-top: 1.8vw;
 }
 
-/* --- Цвета --- */
+
 .colors_row {
     display: flex;
     gap: 0.7vw;
@@ -116,7 +116,7 @@
     border: 0.12vw solid #000;
 }
 
-/* --- Паттерны 2x2 --- */
+
 .patterns_grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -239,7 +239,7 @@
 .tool_btn:hover { background: #ebf4e1; }
 .tool_danger:hover { background: #FE969D; }
 
-/* --- Сетка рисования --- */
+
 .canvas_grid {
     width: 45.69vw;
     height: 42.43vw;
@@ -271,7 +271,7 @@
     pointer-events: none;
 }
 
-/* --- Кнопки НАЗАД / ПОДТВЕРДИТЬ --- */
+
 .canvas_actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -322,7 +322,7 @@
 }
 
 
-/* Состояния кнопок */
+
 .go_to_btn0.inactive,
 .go_to_btn_0.inactive {
     background-color: #b0b0b0 !important;
@@ -359,7 +359,7 @@
     opacity: 1;
 }
 
-/* Состояние для "Закончено" когда нажата */
+
 .go_to_btn_0.done-pressed {
     background-color: #b0b0b0 !important;
     cursor: not-allowed !important;
@@ -416,7 +416,7 @@
     opacity: 0;
 }
 
-/* ———————————————————————————————————1 */ 
+
 
 .go_to_btn0 {
     margin-top: -6vw;

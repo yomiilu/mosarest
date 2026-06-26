@@ -1,133 +1,572 @@
-@media screen and (min-width: 360px) and (max-width: 440px)  {
-    .header{
-        display: none;
-    }
+@media screen and (min-width: 360px) and (max-width: 440px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
 
-    .main {
+  .basic { font-size: 3.6vw; line-height: 5.4vw; }
+  .medtext { font-size: 5.4vw; line-height: 6.6vw; }
+  .btntext { font-size: 3.6vw; line-height: 4.4vw; }
+  .small_text { font-size: 3vw; line-height: 4.4vw; }
+  .zagolovok { font-size: 7.6vw; line-height: 8.6vw; }
+
+  .header {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    height: 13vw;
+    padding: 0 4vw;
+    margin-top: 0.4vw;
+    background: #fff;
+    border: 0.2vw solid #000;
+    overflow: visible;
+    position: static;
+  }
+  .header .li-list,
+  .header .square1, .header .square2, .header .square3,
+  .header .square4, .header .square5 { display: none !important; }
+  .header .logo {
+    position: static;
+    margin: 0;
+    width: 9vw;
+    height: 9vw;
+    flex-shrink: 0;
+  }
+  .header .bron {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  .header .bron #span_btn2 {
+    padding: 2.6vw 12vw 2.6vw 5vw;
+    font-size: 3vw;
+    border-radius: 30vw;
+  }
+  .header .bron .arrow4 {
+    margin-left: -10vw;
+    margin-top: 0;
+    scale: 60%;
+  }
+
+  .main {
     position: absolute;
     margin-top: 55vw;
     margin-left: 31.7vw;
     width: 50vw;
     scale: 2.1;
-    
-}
-
-.medtext {
-    color: black;
-    font-size: 2.78vw;
-    font-family: "Unb-SB";
-    line-height: 3.9vw;
-    letter-spacing: 3%;
-}
-
-.btntext {
-    color: rgb(255, 255, 255);
-    font-size: 1.74vw;
-    font-family: "Unb-RG";
-    line-height: 3.9vw;
-    letter-spacing: 3%;
-}
-.basic {
-    color: black;
-    font-size: 4.04vw;
-    font-family: "Onest";
-    line-height: 5vw;
-    
-}
-
-.small_text {
-    color: black;
-    font-size: 0.9vw;
-    font-family: "Onest-SB";
-   
-}
-
-
-.plashka4{
+  }
+  .main.medtext { font-size: 2.78vw; line-height: 3.9vw; }
+  .plashka4 {
     border-radius: 30vw;
     width: 18.5vw;
     height: 2.4vw;
     margin-left: 15vw;
     margin-top: 12vw;
-    background-color: black;
+    background: #000;
     position: absolute;
     z-index: 30;
     pointer-events: none;
-    scale:2;
-}
-
-.image_swap1,
-.image_swap2,
-.image_swap3,
-.image_swap4 {
+    scale: 2;
+  }
+  .plashka4 .small_text { font-size: 0.9vw; line-height: 2vw; }
+  .image_swap1, .image_swap2, .image_swap3, .image_swap4 {
     position: absolute;
-    scale:3;
-}
-
-.image_swap1 {
-    margin-left: 3.8vw;
-    margin-top: 15.4vw;
-}
-
-.image_swap2 {
-    margin-left: 25.25vw;
-    margin-top: 15.4vw;
-}
-
-.image_swap3 {
-    margin-left: 48.7vw;
-    margin-top: 15.4vw;
-}
-
-.image_swap4 {
-    margin-left: 72.15vw;
-    margin-top: 15.4vw;
-}
-
-
-.image_swap1 img,
-.image_swap1 div,
-.image_swap2 img,
-.image_swap2 div,
-.image_swap3 img,
-.image_swap3 div,
-.image_swap4 img,
-.image_swap4 div {
+    scale: 3;
+  }
+  .image_swap1 { margin-left: 3.8vw; margin-top: 15.4vw; }
+  .image_swap2 { margin-left: 25.25vw; margin-top: 15.4vw; }
+  .image_swap3 { margin-left: 48.7vw; margin-top: 15.4vw; }
+  .image_swap4 { margin-left: 72.15vw; margin-top: 15.4vw; }
+  .image_swap1 img, .image_swap1 div,
+  .image_swap2 img, .image_swap2 div,
+  .image_swap3 img, .image_swap3 div,
+  .image_swap4 img, .image_swap4 div {
     width: 8.05vw;
     height: 8.05vw;
     position: absolute;
     top: 0;
     left: 0;
-    
-}
-
-
-
-.b1 {
+  }
+  .b1 {
     position: absolute;
     margin-top: 21vw;
     margin-left: 31.7vw;
     width: 70vw;
+  }
+  .b1.basic { font-size: 1.9vw; line-height: 2.8vw; }
+
+  body .section_tarifs { height: auto; padding-bottom: 8vw; }
+  body .zg_tarifs { position: static; margin: 6vw 4vw 0; width: auto; }
+  body .opener_wrap_tarifs { width: auto; margin: 2vw 2vw 0; }
+  .opener_wrap_tarifs .opener1 { padding-top: 4vw; }
+  .opener_wrap_tarifs .opener_num { font-size: 3vw; width: 8vw; }
+  .opener_wrap_tarifs .opener_title { font-size: 4.2vw; }
+  .opener_wrap_tarifs .tarif_price { font-size: 3vw; margin-right: 3vw; }
+  .opener_wrap_tarifs .opener_plus { width: 7vw; height: 7vw; border-radius: 1.5vw; }
+  .opener_wrap_tarifs .opener_plus::before { width: 2.6vw; height: 0.4vw; }
+  .opener_wrap_tarifs .opener_plus::after { width: 0.4vw; height: 2.6vw; }
+  .opener_wrap_tarifs .opener_inner { padding: 0 4vw 4vw; }
+  .opener_wrap_tarifs .tarif_list { font-size: 3.4vw; line-height: 5.4vw; }
+  .opener_wrap_tarifs .opener_tags span,
+  .opener_wrap_tarifs .opener_tags2 span { font-size: 3vw; padding: 2vw 4vw; }
+  .opener_wrap_tarifs .opener_photo { display: none !important; }
+  .opener_wrap_tarifs #span_btn {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 3vw;
+    padding: 2.8vw 6vw;
+  }
+
+ .st4 { 
+   display: none !important; }
+  .opener_wrap_tarifs .opener_tags2 { margin-top: 3vw; }
+  .opener_wrap_tarifs .arrow3 { display: none; }
+
+  .zg4 {
+  font-size: 12vw;
+  position: absolute;
+
+  margin-left: 10vw;
+  scale: 60%;
 }
 
+ .go_to_btn3 { display: none !important; }
+.atn_l { display: block !important; }
 
 
+  body .section2_tarifs { height: auto; padding-bottom: 8vw; }
+  .section2_tarifs .zg5 { position: static; margin: 2vw 4vw 0; width: auto; }
+  .section3_contacts .dates-grid,
+  .section2_tarifs .dates-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3vw;
+    margin: 6vw 4vw 0;
+  }
+  .dates-grid .date-card { width: auto; padding: 4vw; gap: 1.6vw; }
+  .dates-grid .date-card__month { font-size: 2.8vw; line-height: 1.2; }
+  .dates-grid .date-card__range { font-size: 5vw; }
+  .dates-grid .date-card__status { font-size: 3vw; gap: 1.6vw; line-height: 1.2; padding-top: 2vw; }
+  .dates-grid .dot { width: 2.2vw; height: 2.2vw; }
+
+  body .section3_tarifs { height: auto; padding-bottom: 10vw; }
+  .section3_tarifs .zg6 { position: static; margin: 2vw 4vw 0; width: auto; }
+  .section3_tarifs .events-nav .back,
+  .section3_tarifs .events-nav .forw {
+    width: 9vw;
+    height: 9vw;
+    border-radius: 1.5vw;
+    margin-top: 4vw;
+    position: absolute;
+  }
+  .section3_tarifs .events-nav .back { margin-left: 60vw; }
+  .section3_tarifs .events-nav .forw { margin-left: 73vw; }
+  .section3_tarifs .events-nav .back::after,
+  .section3_tarifs .events-nav .forw::after { width: 2vw; height: 2vw; }
+  .section3_tarifs .listalka1 {
+    position: relative;
+    width: auto;
+    height: auto;
+    margin: 16vw 4vw 0;
+  }
+  .section3_tarifs .event-slide { position: relative; inset: auto; }
+  .section3_tarifs .ph12 { position: relative; width: 60vw; height: auto; }
+  .section3_tarifs .ph13 { position: relative; margin: 3vw 0 0; width: 38vw; height: auto; }
+  .section3_tarifs .tar1 { position: relative; margin: 3vw 0 0; width: auto; font-size: 3.6vw; line-height: 5.4vw; }
+  .section3_tarifs .ph14 { position: relative; margin: 3vw 0 0; width: 60vw; height: auto; }
+  .section3_tarifs .ph30 { position: relative; margin: 3vw 0 0; width: 60vw; height: auto; }
+
+  body .section4_tarifs { width: 100%; height: 36vw; }
+  .section4_tarifs .bg-video { height: 36vw; }
+  .section4_tarifs .go_to_btn3 {
+    position: absolute;
+    margin: 13vw 4vw 0;
+    width: 92vw;
+    height: 14vw;
+  }
+  .section4_tarifs .go_to_btn3 .btntext.bt1 { font-size: 4vw; }
+  .section4_tarifs .go_to_btn3 .arrow1 { margin-left: 78vw; }
+
+  body .section2_workers { height: auto; padding-bottom: 8vw; }
+  .section2_workers .zg3 { position: static; margin: 6vw 4vw 4vw; width: auto; }
+  .section2_workers .cur1, .section2_workers .cur2, .section2_workers .cur3,
+  .section2_workers .cur4, .section2_workers .cur5, .section2_workers .cur6,
+  .section2_workers .cur7 {
+    position: static;
+    padding: 0;
+    display: inline-block;
+    width: 44vw;
+    vertical-align: top;
+    margin: 0 0 6vw 4vw;
+  }
+  .section2_workers .st10, .section2_workers .st11,
+  .section2_workers .st12, .section2_workers .st13 {
+    position: static;
+    margin: 0 0 1.5vw;
+    width: auto;
+    font-size: 2.6vw;
+  }
+  .section2_workers .team2 {
+    position: static;
+    width: 44vw;
+    height: 54vw;
+    margin: 0;
+  }
+  .section2_workers .team2 .ph10 {
+    width: 44vw;
+    height: 54vw;
+    object-fit: cover;
+  }
+  .section2_workers .team2 .podp2 { width: 44vw; }
+  .section2_workers .team2 .merch_name {
+    font-size: 3.4vw;
+    line-height: 7vw;
+    margin-left: 3vw;
+  }
+  .section2_workers .event-slide { display: none !important; }
+
+  body .section1_merch { height: auto; padding-bottom: 8vw; }
+  .section1_merch .zg5 {
+    position: static;
+    margin: 4vw 4vw;
+    width: auto;
+    color: #000;
+  }
+  .section1_merch .tovar4, .section1_merch .tovar5, .section1_merch .tovar6,
+  .section1_merch .tovar7, .section1_merch .tovar8, .section1_merch .tovar9,
+  .section1_merch .tovar10 {
+    position: static;
+    margin: 0 0 5vw 4vw;
+    display: inline-block;
+    width: 44vw;
+    height: auto;
+    vertical-align: top;
+  }
+  .section1_merch .tovar4 .ph15,
+  .section1_merch .tovar8 .ph16,
+  .section1_merch [class^="tovar"] .ph10,
+  .section1_merch [class^="tovar"] .ph11 {
+    position: relative;
+    width: 44vw;
+    height: 52vw;
+    object-fit: cover;
+    margin: 0;
+  }
+  .section1_merch .podp1, .section1_merch .podp2,
+  .section1_merch .podp3, .section1_merch .podp4 {
+    position: relative;
+    width: 44vw;
+    height: 9vw;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .section1_merch .merch_name {
+    position: static;
+    font-size: 3vw;
+    line-height: 1.2;
+    margin: 0 0 0 3vw;
+  }
+  .section1_merch .price1 {
+    position: static;
+    font-size: 3.4vw;
+    line-height: 1.2;
+    margin: 0 3vw 0 0;
+  }
+  .section1_merch .merch_plus {
+    top: 2vw;
+    right: 2vw;
+    width: 7vw;
+    height: 7vw;
+    border-radius: 1.5vw;
+  }
+  .section1_merch .merch_plus::before { width: 2.6vw; height: 0.4vw; }
+  .section1_merch .merch_plus::after { width: 0.4vw; height: 2.6vw; }
+  .section1_merch .tovar4 .merch_plus,
+  .section1_merch .tovar8 .merch_plus { right: 2vw; }
+
+  body .section2_merch { height: auto; padding-bottom: 10vw; }
+  .section2_merch .zg5 {
+    position: static;
+    margin: 8vw 4vw 0;
+    width: auto;
+    color: #fff;
+  }
+  .section2_merch .b5 {
+    margin: 4vw 4vw 0;
+    width: auto;
+    font-size: 3.6vw;
+    line-height: 5.4vw;
+  }
+  .section2_merch .pusto { position: static; margin: 5vw 4vw 0; }
+  .section2_merch .pusto .go_to_btn {
+    width: 92vw;
+    height: 14vw;
+    margin: 0;
+  }
+  .section2_merch .pusto .go_to_btn .btntext.bt1 { font-size: 4vw; }
+  .section2_merch .pusto .go_to_btn .arrow1 { margin-left: 78vw; }
+  .section2_merch .tovar11, .section2_merch .tovar12 {
+    position: static;
+    display: inline-block;
+    width: 44vw;
+    height: auto;
+    margin: 5vw 0 0 4vw;
+    vertical-align: top;
+  }
+
+  body .mosaic_hero { padding: 5vw 4vw 4vw; }
+  body .mosaic_hero_title { font-size: 8vw; line-height: 9vw; margin-top: 0; }
+  body .mosaic_hero_desc { font-size: 3.6vw; line-height: 1.5; width: auto; }
+  body .mosaic_steps_row { grid-template-columns: 1fr; }
+  body .mosaic_step_cell { padding: 3vw 4vw; gap: 2.5vw; }
+  body .mosaic_step_cell:last-child { padding-left: 4vw; }
+  .mosaic_steps_row .step_num { width: 7vw; height: 7vw; font-size: 3vw; }
+  .mosaic_steps_row .step_text { font-size: 3.6vw; }
+  body .mosaic_body { grid-template-columns: 1fr; }
+  body .mosaic_left { width: auto; height: auto; margin: 5vw 4vw 0; gap: 4vw; }
+  .mosaic_left .color_sw { width: 8vw; height: 8vw; }
+  .mosaic_left .patterns_grid { gap: 5vw 4vw; }
+  .mosaic_left .pattern_label { font-size: 3vw; padding: 2.5vw 2vw; }
+  body .mosaic_right { margin: 6vw 4vw 0; padding: 0; gap: 3vw; }
+  .mosaic_right .canvas_toolbar {
+    width: 92vw;
+    padding: 2.5vw 3vw;
+    flex-wrap: wrap;
+    gap: 2vw;
+    margin-top: 0;
+  }
+  .mosaic_right .toolbar_dot { width: 3vw; height: 3vw; }
+  .mosaic_right .toolbar_info_text { font-size: 3vw; }
+  .mosaic_right .tool_btn { font-size: 3vw; padding: 1.6vw 3vw; gap: 1vw; }
+  .mosaic_right .canvas_grid { width: 92vw; height: 92vw; }
+  .mosaic_right .canvas_actions { width: 92vw; gap: 4vw; }
+  .mosaic_right .canvas_back_btn { height: 13vw; font-size: 3.6vw; }
+  .mosaic_page .go_to_btn0,
+  .mosaic_page .go_to_btn_0 {
+    position: static;
+    width: 92vw;
+    height: 14vw;
+    margin: 5vw 4vw 0;
+  }
+  .mosaic_page .go_to_btn0 .btntext.bt1,
+  .mosaic_page .go_to_btn_0 .btntext.bt1 { font-size: 4vw; }
+  .mosaic_page .go_to_btn0 .arrow6 { margin-left: 70vw; width: 12vw; }
+  .mosaic_page .go_to_btn_0 .arrow1 { margin-left: 78vw; }
+  .mosaic_page .trash { display: none !important; }
+
+  body .section1_merch2 { padding-bottom: 8vw; }
+  .section1_merch2 .breadcrumb { position: static; margin: 5vw 4vw 0; }
+  .section1_merch2 .breadcrumb a, .section1_merch2 .breadcrumb span { font-size: 3vw; }
+  .section1_merch2 .merch2_photo {
+    position: static;
+    width: 92vw;
+    height: 110vw;
+    margin: 4vw 4vw 0;
+  }
+  .section1_merch2 .merch2_info { position: static; width: auto; margin: 6vw 4vw 0; }
+  .section1_merch2 .merch2_title { font-size: 8vw; }
+  .section1_merch2 .merch2_desc { font-size: 3.2vw; margin-top: 3vw; }
+  .section1_merch2 .merch2_price_row { gap: 3vw; margin-top: 5vw; }
+  .section1_merch2 .merch2_price_main { font-size: 7vw; }
+  .section1_merch2 .merch2_price_old { font-size: 3.6vw; }
+  .section1_merch2 .merch2_badge { font-size: 3vw; padding: 1vw 3vw; }
+  .section1_merch2 .merch2_label { font-size: 3vw; margin-top: 5vw; }
+  .section1_merch2 .merch2_colors { gap: 2.5vw; margin-top: 3vw; }
+  .section1_merch2 .color_dot { width: 8vw; height: 8vw; }
+  .section1_merch2 .merch2_sizes { gap: 2.5vw; margin-top: 3vw; }
+  .section1_merch2 .size_btn { padding: 3vw 5vw; font-size: 3.6vw; }
+  .section1_merch2 .merch2_buy_row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4vw;
+    margin-top: 6vw;
+  }
+  .section1_merch2 .qty_box {
+    margin: 0;
+    gap: 3vw;
+    justify-content: flex-start;
+  }
+  .section1_merch2 .qty_btn {
+    width: 11vw;
+    height: 11vw;
+    border-radius: 1.5vw;
+    font-size: 4vw;
+  }
+  .section1_merch2 .qty_num { font-size: 4.6vw; width: 8vw; }
+  .section1_merch2 .merch2_buy_row .go_to_btn {
+    width: 100%;
+    height: 14vw;
+    margin: 0;
+  }
+  .section1_merch2 .merch2_buy_row .go_to_btn .btntext.bt1 { font-size: 4vw; }
+  .section1_merch2 .merch2_buy_row .go_to_btn .arrow6 {
+    margin-left: 70vw;
+    width: 12vw;
+    margin-top: 0;
+  }
+  .section1_merch2 .merch2_hint { font-size: 3vw; margin-top: 4vw; }
+
+  .section6 {
+    height: auto;
+    padding: 8vw 4vw 14vw;
+  }
+  .section6 .podval_1, .section6 .podval_2,
+  .section6 .podval_3, .section6 .podval_4 {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0 0 8vw;
+  }
+  .section6 .podval_1 { display: inline-block; width: 46%; vertical-align: top; }
+  .section6 .podval_2 { display: inline-block; width: 46%; vertical-align: top; }
+  .section6 .opener_title.num1 { font-size: 6vw; padding-bottom: 3vw; }
+  .section6 .basic.num2, .section6 .basic.num2s {
+    font-size: 3.8vw;
+    line-height: 1.2;
+    margin-top: 3vw;
+  }
+  .section6 .zg4 {
+    position: static;
+    margin: 4vw 0 0;
+    width: auto;
+    font-size: 16vw;
+    line-height: 1;
+  }
+  .section6 .podv_poloska {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    height: 2.5vw;
+  }
+
+  body .section1_contacts { height: auto; padding-bottom: 6vw; }
+  .section1_contacts .st6 { position: static; margin: 5vw 4vw 0; width: auto; }
+  .section1_contacts .map { display: none !important; }
+  .section1_contacts .bck {
+    position: relative;
+    width: 92vw;
+    height: auto;
+    margin: 5vw 4vw 0;
+    padding: 5vw 4vw 6vw;
+  }
+
+  body .section3_tarifs { display: none !important; }
+  .section1_contacts .cont { position: static; margin: 0 0 4vw; width: auto; }
+  .section1_contacts .form-container { position: static; margin: 0; }
+  .section1_contacts .contact-form { gap: 3vw; padding-bottom: 0; }
+  .section1_contacts .form-input { width: 100%; height: 11vw; padding: 3vw; }
+  .section1_contacts .form-textarea { width: 100%; height: 26vw; padding: 3vw; }
+  .section1_contacts .form-input::placeholder,
+  .section1_contacts .form-textarea::placeholder { font-size: 3.4vw; }
+  .section1_contacts .bron2 { position: static; width: 100%; height: auto; margin: 2vw 0 0; }
+  .section1_contacts .bron2 #span_btn3 {
+    display: block;
+    text-align: center;
+    padding: 3.6vw 4vw;
+    font-size: 3.4vw;
+    border-radius: 30vw;
+  }
+  .opener_wrap_tarifs .opener_inner { 
+  padding: 6vw 4vw 8vw; 
+}
+
+.opener_wrap_tarifs .opener_inner { 
+  padding: 6vw 4vw 8vw; 
+}
+
+.opener_wrap_tarifs .tarif_list { 
+  font-size: 3.4vw; 
+  line-height: 5.4vw; 
+  white-space: nowrap;
+}
+
+body .opener_wrap_tarifs { 
+  width: auto; 
+  margin: 1vw 2vw 0; 
+}
+.header .bron #span_btn2 {
+  padding: 2.6vw 22vw 2.6vw 5vw;
+  font-size: 3vw;
+  border-radius: 30vw;
+}
+
+body .opener_wrap_tarifs { 
+  width: auto; 
+  margin: 0vw 6vw 0; 
+}
+
+body .zg_tarifs { 
+  position: static; 
+  margin: 4vw 6vw 0; 
+  width: auto; 
+}
+  body .section_tarifs { height: auto; padding-bottom: 8vw; }
+body .zg_tarifs { 
+  position: static; 
+  margin: 6vw 6vw 0; 
+  width: auto; 
 
 
+}
 
+.header .logo {
+  position: static;
+  margin: 0;
+  width: 15.3vw;
+  height: 15.3vw;
+  flex-shrink: 0;
+}
 
+.header .bron .arrow4 {
+  margin-left:  10vw;
+  margin-top: 0;
+  scale: 22%;
+}
+body .opener_wrap_tarifs { 
+  width: auto; 
+  margin: 6vw 6vw 0; 
+}
+.opener_wrap_tarifs .opener1 { padding-top: 8vw; }
+.opener_wrap_tarifs .opener_num { font-size: 3vw; width: 8vw; }
+.opener_wrap_tarifs .opener_title { font-size: 4.2vw; }
+.opener_wrap_tarifs .tarif_price { font-size: 3vw; margin-right: 3vw; }
+.opener_wrap_tarifs .opener_plus { width: 7vw; height: 7vw; border-radius: 1.5vw; }
+.opener_wrap_tarifs .opener_plus::before { width: 2.6vw; height: 0.4vw; }
+.opener_wrap_tarifs .opener_plus::after { width: 0.4vw; height: 2.6vw; }
+.opener_wrap_tarifs .opener_inner { 
+  padding: 0 6vw 8vw; 
+}
+.opener_wrap_tarifs .tarif_list { 
+  font-size: 3.4vw; 
+  line-height: 6.4vw; 
+}
+.opener_wrap_tarifs .opener_tags span,
+.opener_wrap_tarifs .opener_tags2 span { font-size: 3vw; padding: 2vw 4vw; }
+.opener_wrap_tarifs .opener_photo { display: none !important; }
+.opener_wrap_tarifs #span_btn {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 3vw;
+  padding: 2.8vw 6vw;
+}
+.opener_wrap_tarifs .opener_tags2 { margin-top: 5vw; }
+.opener_wrap_tarifs .arrow3 { display: none; }
+  .section1_contacts .bron2 .arrow4 { display: none; }
+  body .section2_contacts { display: none; }
+  body .section3_contacts { height: auto; margin-top: 0; padding-bottom: 8vw; }
+  .section3_contacts .zg20 { position: static; margin: 8vw 4vw 0; width: auto; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  .section1_404 { margin-top: 6vw; min-height: 70vh; padding-bottom: 8vw; }
+  .err_grid_wrap { margin-left: 0; align-self: center; width: 92vw; }
+  .err_grid { width: 92vw; height: 37vw; margin-top: 4vw; }
+  .err_msg { font-size: 3.4vw; margin-top: 5vw; }
+  .section1_404 .go_to_btn_404 { width: 92vw; height: 14vw; }
+  .section1_404 .go_to_btn_404 .btntext.bt1 { font-size: 4vw; }
+  .section1_404 .arrow2 { margin-left: 78vw; }
 }

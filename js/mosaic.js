@@ -109,7 +109,6 @@
             return cells.filter(function(c) { return c !== null; }).length;
         }
 
-        // ===== ФУНКЦИЯ ОЧИСТКИ СЕТКИ =====
         function clearGrid() {
             for (var i = 0; i < TOTAL; i++) {
                 cells[i] = null;
@@ -211,7 +210,6 @@
             });
         }
 
-        // ===== ФУНКЦИЯ ДЛЯ КНОПКИ TRASH =====
         function setupTrashButton() {
             var trashBtn = document.querySelector('.trash');
             if (!trashBtn) {
@@ -223,7 +221,7 @@
                 e.preventDefault();
                 e.stopPropagation();
                 
-                // Спрашиваем подтверждение перед очисткой
+    
                 if (getFilledCount() > 0) {
                     if (confirm('Вы уверены, что хотите очистить всё поле?')) {
                         clearGrid();
@@ -361,7 +359,7 @@
 
         setupDoneButton();
         setupCartButton();
-        setupTrashButton(); // Добавляем настройку кнопки trash
+        setupTrashButton(); 
 
         update_info();
         updateButtons();
